@@ -14,7 +14,7 @@
     <div class="alert alert-primary" role="alert">
         Bootstrap test!
     </div>
-
+       
     <?php
         phpinfo();
     ?>
