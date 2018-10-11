@@ -1,5 +1,5 @@
 <?php
-include("includes/header.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/kaasch/includes/header.php");
 echo "login plox";
  ?>
 
@@ -7,5 +7,5 @@ echo "login plox";
 
 
 <?php
-include("includes/footer.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/kaasch/includes/footer.php");
 ?>
