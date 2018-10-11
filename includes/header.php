@@ -18,9 +18,9 @@
     </div>
   </div>
   <div class="row nav-bar bg-info">
-    <div class="col-sm-1"> page1 </div>
-    <div class="col-sm-1"> page2 </div>
-    <div class="col-sm-1"> page3 </div>
-    <div class="col-sm-1"> page4 </div>
+    <div class="col-sm-1" href="#"> page1 </div>
+    <div class="col-sm-1" href="#"> page2 </div>
+    <div class="col-sm-1" href="#"> page3 </div>
+    <div class="col-sm-1" href="#"> page4 </div>
   </div>
 </div>
