@@ -1,3 +1,7 @@
+<?php
+include("ddb_connect.php");
+
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,16 +15,27 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container-fluid" id="main-header">
-  <div class="row bg-light">
-    <div class="col-sm-4">
-      <h1> Kaasch </h1>
-    </div>
-  </div>
-  <div class="row nav-bar bg-info">
-    <div class="col-sm-1" href="#"> page1 </div>
-    <div class="col-sm-1" href="#"> page2 </div>
-    <div class="col-sm-1" href="#"> page3 </div>
-    <div class="col-sm-1" href="#"> page4 </div>
-  </div>
-</div>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+          <a class="navbar-brand js-scroll-trigger" href="#page-top">Kaasch</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="./pages/login.php">login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#shop">shop</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+  </nav>
