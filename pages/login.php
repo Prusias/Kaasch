@@ -27,7 +27,7 @@ if (!empty($_POST)){
 		exit(); 
 	 }
 	 elseif(($is_admin =="0")) {
-		 header("Location: index.php?id=".$user_id.""); 
+		 header("Location: ../index.php?id=".$user_id.""); 
          exit(); 
 	 }
 	}

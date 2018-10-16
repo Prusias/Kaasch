@@ -6,8 +6,10 @@
 	if (!($_SERVER["REQUEST_METHOD"] == "POST")){
 		
 ?>
+		<center>
 		<form action="signup.php" method="post">
 		<h2> Making a new account</h2>
+		All fields are mandatory
 		<hr />
 		<table>
 		<tr><td>first name:</td><td><input type = "text" name = "first_name" pattern=".{2,}"   required title="the first name must be at least two letters"></td></tr>
@@ -26,7 +28,7 @@
 		</table><p>
 				<input type="submit" value="signup" />
 		</form>
-		
+		<center>
 <?php
 		}
 	else

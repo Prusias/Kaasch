@@ -10,11 +10,11 @@
 	<body>
 			
 			
-		
+		<center>
 		<h3>login</h3>
 		New user ?  <a href="signup.php">make a new account now</a>
 		<table>
-		<form method="post" action="login1.php">
+		<form method="post" action="login.php">
 		<tr><td>	Email: </td><td> <input name="email" type="text"  required title="please fill your email" ></td></tr>
 		<tr><td>	password: </td><td><input name="password" type="password" required title="please fill your password"></td></tr>
 		</table>
