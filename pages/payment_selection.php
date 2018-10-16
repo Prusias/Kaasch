@@ -1,5 +1,5 @@
 <?php
-include("includes/header.php");
+require("../includes/header.php");
 
  ?>
   <h3>Order overview</h3>
@@ -9,12 +9,21 @@ include("includes/header.php");
     //     echo "<tr><td>$value</td><td>$$</td></tr>";
     // }
     ?>
-    <tr><td>Product 1</td><td>$$</td></tr>
-    <tr><td>Product 2</td><td>$$</td></tr>
-    <tr><td><b>Total:</b></td><td><b>$$$$</b></td></tr>
+    <tr>
+      <td>Product 1</td>
+      <td>$$</td>
+    </tr>
+    <tr>
+      <td>Product 2</td>
+      <td>$$</td>
+    </tr>
+    <tr>
+      <td><b>Total:</b></td>
+      <td><b>$$$$</b></td>
+    </tr>
   </table>
   <br>
-  <p><h3>Delivery address</h3></p>
+  <h3>Delivery address</h3>
   <table>
     First_name Last_name<br>
     Street #<br>
@@ -24,11 +33,13 @@ include("includes/header.php");
   <p><h3>Select payment method</h3></p>
   <form method = 'post'>
     <table>
-      <tr><td><input type="radio" name="payment_method" value="paypal">Paypal</td>
-      <td><input type="radio" name="payment_method" value="ideal">iDeal</td>
-      <td><input type="radio" name="payment_method" value="creditcard">Credit Card</td>
-      <td><input type="radio" name="payment_method" value="bitcoin">Bitcoin</td></tr>
-      </table>
+      <tr>
+        <td><input type="radio" name="payment_method" value="paypal">Paypal</td>
+        <td><input type="radio" name="payment_method" value="ideal">iDeal</td>
+        <td><input type="radio" name="payment_method" value="creditcard">Credit Card</td>
+        <td><input type="radio" name="payment_method" value="bitcoin">Bitcoin</td>
+      </tr>
+    </table>
       <br />
       <input type="submit" name="submit" value="Confirm">
   </form>

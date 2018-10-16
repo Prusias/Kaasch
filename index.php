@@ -1,6 +1,6 @@
 
 <?php
-include("includes/header.php");
+require("/includes/header.php");
 
  ?>
  <header class="masthead text-center text-white d-flex">
@@ -21,7 +21,5 @@ include("includes/header.php");
 </header>
 
 <?php
-include("includes/footer.php");
+require("/includes/footer.php");
 ?>
-
-</header>

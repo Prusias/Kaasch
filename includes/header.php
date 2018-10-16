@@ -24,7 +24,7 @@ include("ddb_connect.php");
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="./pages/login.php">login</a>
+                <a class="nav-link js-scroll-trigger" href="./pages/login_form.php">login</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="#about">About</a>

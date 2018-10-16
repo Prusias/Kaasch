@@ -1,15 +1,19 @@
 <?php
-include 'database.php';
+require ('../includes/ddb_connect.php');
 $user_id = $_GET['id'];
 ?>
 
-
-<hr><p />
 <table   width="50%"  align="center">
-<tr>	<td colspan="6"><h2 align="center">Your orders</h2></td></tr>
-<tr>
-	<th>Order number</th><th>order date</th><th>status</th><th>payment mothod</th><th>paid ?</th>
-</tr>
+	<tr>
+		<td colspan="6"><h2 align="center">Your orders</h2></td>
+	</tr>
+	<tr>
+		<th>Order number</th>
+		<th>order date</th>
+		<th>status</th>
+		<th>payment mothod</th>
+		<th>paid ?</th>
+	</tr>
 
 <?php
 function paid($paid)
@@ -20,8 +24,8 @@ function paid($paid)
 	}else{
 		return "no";
 	}
-} 
-$sql = ("SELECT * FROM orders"); 
+}
+$sql = ("SELECT * FROM orders");
 $result = mysqli_query($db, $sql);
 if (mysqli_num_rows($result) > 0) {
 
@@ -33,11 +37,11 @@ if (mysqli_num_rows($result) > 0) {
 	echo ("<td> <a href=\"spicific_order.php?klantnr=".$row['id']."\">View | </a>");
 	echo "</tr>";
   }
-echo "</table>";	
-		
-	   
+echo "</table>";
+
+
 } else {
     echo "Geen records gevonden";
 }
-mysqli_close($db);
-?> 
+
+?>
