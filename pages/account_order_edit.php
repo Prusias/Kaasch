@@ -1,4 +1,7 @@
-<html>
+<?php
+include("includes/header.php");
+
+ ?>
     Account Account# - Orders<br>
     Last_name, First_name<br><br>
 
@@ -37,7 +40,7 @@
 <form method="post" action="account_order.php" style="display: inline-block">
   <input type="submit" name="confirm" value="Confirm Changes">
 </form>
-</html>
+
 <?php
   if (isset($_POST['cancel'])) {
     header('location=account_order.php');
@@ -46,4 +49,8 @@
     //save changes
     header('location=account_order.php');
   }
+
+  include("includes/footer.php");
+
+
 ?>

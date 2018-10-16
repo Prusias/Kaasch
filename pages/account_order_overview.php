@@ -1,4 +1,7 @@
-<html>
+<?php
+include("includes/header.php");
+
+ ?>
     Account Account# - Orders<br>
     Last_name, First_name
 
@@ -9,4 +12,6 @@
     <tr><td>Order #2</td><td>Date Order #2</td><td>Sum Products Order #2</td><td>Status Order #2</td><td><b>></b></td></tr>
     <tr><td>Order #3</td><td>Date Order #3</td><td>Sum Products Order #3</td><td>Status Order #3</td><td><b>></b></td></tr>
   </table>
-</html>
+  <?php
+  include("includes/footer.php");
+  ?>

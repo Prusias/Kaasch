@@ -1,16 +1,8 @@
- 
- <!doctype html>
+<?php
+include("includes/header.php");
 
-<html lang="en">
-	<head>
-		<title></title>
-		<meta charset="utf-8">
-	</head>
-	
-	<body>
-			
-			
-		<center>
+ ?>
+
 		<h3>login</h3>
 		New user ?  <a href="signup.php">make a new account now</a>
 		<table>
@@ -23,10 +15,7 @@
 		</form><p>
 		 <a href="forgut_password.php"> I forgut my password</a>
 
-		
-	<pre>
-	</body>
-</html>
+
 
 
 <?php
@@ -37,4 +26,7 @@
 //}
 
 
+?>
+<?php
+include("includes/footer.php");
 ?>

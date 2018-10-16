@@ -1,4 +1,7 @@
-<html>
+<?php
+include("includes/header.php");
+
+ ?>
     Account Account# - Orders<br>
     Last_name, First_name<br><br>
 
@@ -32,4 +35,7 @@
   <form method="post" action="account_order_edit.php">
     <input type="submit" name="edit" value="Edit order">
   </form>
-</html>
+
+  <?php
+  include("includes/footer.php");
+  ?>

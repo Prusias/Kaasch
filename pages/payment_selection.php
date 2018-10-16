@@ -1,4 +1,7 @@
-<html>
+<?php
+include("includes/header.php");
+
+ ?>
   <h3>Order overview</h3>
   <table>
     <?php
@@ -32,7 +35,7 @@
 
 
 
-</html>
+
 <?php
 if(isset($_POST['submit'])){
   if(!isset($_POST['payment_method'])){
