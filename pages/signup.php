@@ -6,12 +6,13 @@
 	if (!($_SERVER["REQUEST_METHOD"] == "POST")){
 		
 ?>
+		<body bgcolor = #EDB91F> 
 		<center>
 		<form action="signup.php" method="post">
 		<h2> Making a new account</h2>
 		All fields are mandatory
 		<hr />
-		<table>
+		<table bgcolor= #f8c467>
 		<tr><td>first name:</td><td><input type = "text" name = "first_name" pattern=".{2,}"   required title="the first name must be at least two letters"></td></tr>
 		<tr><td>Last name:</td><td><input type = "text" name = "last_name" pattern=".{2,}"   required title="the last name must be at least two letters"></td></tr>
 		<tr><td>E-mail:</td><td><input type = "text" name = "mail"></td></tr>
@@ -41,7 +42,7 @@
 			$mail = strtolower($mail);
 			$sql = "SELECT email_adres FROM users WHERE email_adres = '$mail'";
 			$result_mail = mysqli_query($db, $sql);
-			if( !preg_match("/^[A-Za-z]*$/", $first_name) || !preg_match("/^[A-Za-z]*$/", $last_name)) 
+			if( !preg_match("/^[A-Za-z -]*$/", $first_name) || !preg_match("/^[A-Za-z -]*$/", $last_name)) 
 			{
 				die("The name must only be letters");
 			}
@@ -109,7 +110,7 @@
 						{	
 							$user_id = $sql_adres_id['id'];
 						}}
-						$index="index.php";
+						$index="../index.php";
 					//	$_SESSION['loggedin'] == true;
 						echo "you have signup successfully<br/><br> ";
 						echo "<a href=".$index."?id=".$user_id."> Go to home page </a>";
