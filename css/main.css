@@ -3,6 +3,9 @@ html {
   width: 100%;
   height: 100%;
 }
+body {
+  padding-top: 54px;
+}
 
 header.masthead {
   margin-top: 5%;

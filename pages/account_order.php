@@ -41,8 +41,14 @@ require("../includes/header.php");
   </table>
   <table style="display: inline-block;">
     <col width = 130><col width = 130>
-    <tr><td><b>Payment Method</b></td><td align='right'>payment_method</td></tr>
-    <tr><td></td><td align='right'>email if PayPal</td></tr>
+    <tr>
+      <td><b>Payment Method</b></td>
+      <td align='right'>payment_method</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td align='right'>email if PayPal</td>
+    </tr>
   </table>
   <br><br>
   <table>

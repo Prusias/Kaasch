@@ -5,12 +5,12 @@ require ('../includes/ddb_connect.php');
 
 if (!empty($_POST)){
 
-	$email = mysqli_real_escape_string($db, $_POST['email']);
-	$password = mysqli_real_escape_string($db, $_POST['password']);
+	$email = mysqli_real_escape_string($mysqli, $_POST['email']);
+	$password = mysqli_real_escape_string($mysqli, $_POST['password']);
 
-	$query = 	"SELECT * FROM usersWHERE email_adres ='" . $email ."'";
+	$query = 	"SELECT * FROM users WHERE email_adres ='" . $email ."'";
 
-	$result = mysqli_query($db, $query) or die("FOUT : " . mysqli_error());
+	$result = mysqli_query($mysqli, $query) or die("FOUT : " . mysqli_error());
 
 	if (mysqli_num_rows($result) > 0){
 				$_SESSION["auth"]=true;
