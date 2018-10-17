@@ -8,7 +8,7 @@
     <title>Kaasch Home</title>
 </head>
 <body>
-    <?php require($path . "includes/nav.php"); ?>
+    <?php require($path . "/includes/nav.php"); ?>
     <header class="masthead text-center text-white d-flex">
       <div class="container">
         <div class="row">
@@ -27,7 +27,7 @@
             </div>
         </div>
     <div>
-    <?php require($path . "includes/footer.php"); ?>
+    <?php require($path . "/includes/footer.php"); ?>
 </body>
 </html>
 
