@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php require("includes/head.php"); ?>
-    <link rel="stylesheet" href="css/main.css">
+    <?php
+      $path = $_SERVER["DOCUMENT_ROOT"];
+      require($path . "/includes/head.php");
+    ?>
     <title>Kaasch Home</title>
 </head>
 <body>
-    <?php require("includes/nav.php"); ?>
+    <?php require($path . "includes/nav.php"); ?>
     <header class="masthead text-center text-white d-flex">
       <div class="container">
         <div class="row">
@@ -25,7 +27,7 @@
             </div>
         </div>
     <div>
-    <?php require("includes/footer.php"); ?>
+    <?php require($path . "includes/footer.php"); ?>
 </body>
 </html>
 

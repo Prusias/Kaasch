@@ -2,13 +2,13 @@
 <html>
 <head>
 	<?php 
-		require("../includes/head.php"); 
+		$path = $_SERVER["DOCUMENT_ROOT"];
+		require($path . "/includes/head.php"); 
 	?>
-	<link rel="stylesheet" href="../css/main.css">
     <title>Kaasch Login</title>
 </head>
 <body>
-	<?php require("../includes/nav.php"); ?>
+	<?php require($path . "/includes/nav.php"); ?>
 	<div class="container">
         <div class="row">
             <div class="col-12">
@@ -38,6 +38,6 @@
 		</div>
 	</div>
   
-	<?php require("../includes/footer.php"); ?>
+	<?php require($path . "/includes/footer.php"); ?>
 </body>
 </html>
