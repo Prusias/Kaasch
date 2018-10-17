@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php 
-		$path = $_SERVER["DOCUMENT_ROOT"];
-		require($path . "/includes/head.php"); 
+	<?php
+
+		require("../includes/header.php");
+		get_header('kaasch', 'login for ordering your real dutch kaas');
 	?>
     <title>Kaasch Login</title>
 </head>
 <body>
-	<?php require($path . "/includes/nav.php"); ?>
 	<div class="container">
         <div class="row">
             <div class="col-12">
@@ -30,14 +30,14 @@
 						</div>
 					</form>
 					<p class="mt-5">
-						New user? 
+						New user?
 						<a href="signup.php" class="btn btn-secondary">Register</a>
-					</p>  
+					</p>
 				</div>
 			</div>
 		</div>
 	</div>
-  
-	<?php require($path . "/includes/footer.php"); ?>
+
+	<?php require("../includes/footer.php"); ?>
 </body>
 </html>

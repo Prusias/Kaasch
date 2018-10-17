@@ -18,7 +18,7 @@
   <div class="container">
       <div class="row">
           <div class="col-12">
-              <h1 style="height: 1200px;">Homepage</h1>
+              <h1>Homepage</h1>
           </div>
       </div>
   </div>
