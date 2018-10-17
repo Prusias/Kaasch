@@ -1,25 +1,34 @@
-
-<?php
-require("/includes/header.php");
-
- ?>
- <header class="masthead text-center text-white d-flex">
-      <div class="container my-auto">
+<!DOCTYPE html>
+<html>
+<head>
+    <?php
+      $path = $_SERVER["DOCUMENT_ROOT"];
+      require($path . "/includes/head.php");
+    ?>
+    <title>Kaasch Home</title>
+</head>
+<body>
+    <?php require($path . "/includes/nav.php"); ?>
+    <header class="masthead text-center text-white d-flex">
+      <div class="container">
         <div class="row">
           <div class="col-lg-10 mx-auto">
             <h1 class="text-uppercase">
-              <strong>Your Favorite Source of Free Bootstrap Themes</strong>
+              <strong>Kaasch Webshop</strong>
             </h1>
-            <hr>
-          </div>
-          <div class="col-lg-8 mx-auto">
-            <p class="text-faded mb-5">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
-            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
           </div>
         </div>
       </div>
-</header>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 style="height: 1200px;">Homepage</h1>
+            </div>
+        </div>
+    <div>
+    <?php require($path . "/includes/footer.php"); ?>
+</body>
+</html>
 
-<?php
-require("/includes/footer.php");
-?>
+
