@@ -1,7 +1,10 @@
 <?php
-require("../includes/header.php");
+	require_once("../document_root.php");
 
- ?>
+	require_once(get_document_root() . "/includes/header.php");
+	get_header('kaasch', '');
+?>
+
   <h3>Order overview</h3>
   <table>
     <?php
@@ -68,3 +71,4 @@ if(isset($_POST['submit'])){
   }
 }
 ?>
+<?php require_once(get_document_root() . "/includes/footer.php"); ?>

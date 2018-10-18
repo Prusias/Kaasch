@@ -1,7 +1,10 @@
 <?php
-require("../includes/header.php");
+	require_once("../document_root.php");
 
- ?>
+	require_once(get_document_root() . "/includes/header.php");
+	get_header('kaasch', '');
+?>
+
     Account Account# - Orders<br>
     Last_name, First_name
 
@@ -35,6 +38,4 @@ require("../includes/header.php");
       <td><b>></b></td>
     </tr>
   </table>
-  <?php
-  require("/includes/footer.php");
-  ?>
+  <?php require_once(get_document_root() . "/includes/footer.php"); ?>

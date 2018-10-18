@@ -1,4 +1,8 @@
 <?php
+	require_once("../document_root.php");
+
+	require_once(get_document_root() . "/includes/header.php");
+	get_header('kaasch', '');
 
 	include('database.php');
 	session_start();
@@ -124,3 +128,4 @@
 	}
 
 ?>
+<?php require_once(get_document_root() . "/includes/footer.php"); ?>

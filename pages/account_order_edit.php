@@ -1,7 +1,10 @@
 <?php
-require("../includes/header.php");
+	require_once("../document_root.php");
 
- ?>
+	require_once(get_document_root() . "/includes/header.php");
+	get_header('kaasch', '');
+?>
+
     Account Account# - Orders<br>
     Last_name, First_name<br><br>
 
@@ -85,8 +88,5 @@ require("../includes/header.php");
     //save changes
     header('location=account_order.php');
   }
-
-  require("/includes/footer.php");
-
-
 ?>
+<?php require_once(get_document_root() . "/includes/footer.php"); ?>
