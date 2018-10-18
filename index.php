@@ -1,6 +1,6 @@
 
 <?php
-  require("/includes/header.php");
+  require("includes/header.php");
   get_header('kaasch', 'kaasisbaas');
 ?>
 
@@ -22,4 +22,4 @@
           </div>
       </div>
   </div>
-  <?php require("/includes/footer.php"); ?>
+  <?php require("includes/footer.php"); ?>
