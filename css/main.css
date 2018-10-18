@@ -1,18 +1,21 @@
 body,
 html {
   width: 100%;
-  height: 100%;
-}
+  height: flex;
 
-header.masthead {
-  margin-top: 5%;
+  /* Geen height, anders is height altijd de height van het scherm, niet de pagina. Dit breekt sommige css */
+}
+/*#region Index */
+.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
   background-image: url("../images/Kaas_op_planken.jpg");
   background-position: center center;
   background-size: cover;
 }
+/*#endregion*/
 
+/*#region Navigation */
 #mainNav {
   border-bottom: 1px solid rgba(33, 37, 41, 0.1);
   background-color: #fff;
@@ -55,3 +58,4 @@ header.masthead {
 #mainNav .navbar-nav > li.nav-item > a.nav-link:focus.active:hover {
   background-color: transparent;
 }
+/*#endregion*/

@@ -1,9 +1,9 @@
 <?php
-include("includes/header.php");
+require("../includes/header.php");
 
  ?>
 
 
 <?php
-include("includes/footer.php");
+require("/includes/footer.php");
 ?>

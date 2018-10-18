@@ -1,10 +1,10 @@
-<?php 
+<?php
 
-	include('database.php'); 
+	include('database.php');
 	session_start();
-	
+
 	if (!($_SERVER["REQUEST_METHOD"] == "POST")){
-		
+
 ?>
 		<body bgcolor = #EDB91F> 
 		<center>
@@ -51,7 +51,7 @@
 				die("email isn't valid");
 			}elseif (mysqli_num_rows($result_mail) > 0 )
 			{
-				
+
 				die("email is taken");
 			}
 			$gender = $_POST['gender'];
@@ -74,8 +74,8 @@
 			$state = mysqli_real_escape_string($db, $_POST['state']);
 			$country = mysqli_real_escape_string($db, $_POST['country']);
 			$password = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
-			
-				$query1 = "INSERT INTO addresses(streetname, house_number, city, postal_code, state, country)"; 
+
+				$query1 = "INSERT INTO addresses(streetname, house_number, city, postal_code, state, country)";
 				$query1 .= " VALUES ('$street_name', '$house_number', '$city', '$postcode', '$state', '$country')";
 				$controle1 = mysqli_query($db,$query1);
 					if ($controle1 == TRUE) {
@@ -83,46 +83,44 @@
 						}
 					//else
 					//{
-					//	die("error adding address"); 
-					//} 				
+					//	die("error adding address");
+					//}
 				$query2 = "SELECT MAX(id) AS `id` FROM addresses";
 				$fetched_id = mysqli_query($db,$query2);
 					if ($fetched_id == TRUE) {
-						
-						while($sql_adres_id = mysqli_fetch_assoc($fetched_id)) 
-						{	
+
+						while($sql_adres_id = mysqli_fetch_assoc($fetched_id))
+						{
 							$controle2 = $sql_adres_id['id'];
 						}
 					}//else{
 					//	die("didn't work");
 					//}
-					
-				$query = "INSERT INTO users(first_name, last_name, email_adres, telephone_number, sex, address_id, password_hash) "; 
+
+				$query = "INSERT INTO users(first_name, last_name, email_adres, telephone_number, sex, address_id, password_hash) ";
 				$query .= " VALUES ('$first_name', '$last_name', '$mail', '$telephone_number', '$gender', '$controle2', '$password')";
 				$controle = mysqli_query($db,$query);
-				
+
 					if ($controle == TRUE) {
 						$sql = "SELECT MAX(id) AS `id` FROM users";
 						$fetched_id = mysqli_query($db,$sql);
 						if ($fetched_id == TRUE){
-							
-						while($sql_adres_id = mysqli_fetch_assoc($fetched_id)) 
-						{	
+
+						while($sql_adres_id = mysqli_fetch_assoc($fetched_id))
+						{
 							$user_id = $sql_adres_id['id'];
 						}}
 						$index="../index.php";
 					//	$_SESSION['loggedin'] == true;
 						echo "you have signup successfully<br/><br> ";
 						echo "<a href=".$index."?id=".$user_id."> Go to home page </a>";
-						
+
 						}
 					else
 					{
-						die("error adding user"); 
+						die("error adding user");
 					}
-		
-	}	
-	
-?>	
-		
-		
+
+	}
+
+?>
