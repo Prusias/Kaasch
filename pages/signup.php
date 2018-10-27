@@ -4,13 +4,13 @@
 	require_once(get_document_root() . "/includes/header.php");
 	get_header('kaasch', '');
 
-	include('database.php');
+	require ('../includes/ddb_connect.php');
 	session_start();
 
 	if (!($_SERVER["REQUEST_METHOD"] == "POST")){
 
 ?>
-		<body bgcolor = #EDB91F> 
+		<body bgcolor = #EDB91F>
 		<center>
 		<form action="signup.php" method="post">
 		<h2> Making a new account</h2>
@@ -38,15 +38,15 @@
 		}
 	else
 	{
-			$first_name = mysqli_real_escape_string($db, $_POST["first_name"]);
+			$first_name = mysqli_real_escape_string($mysqli, $_POST["first_name"]);
 			$first_name = ucwords($first_name);
-			$last_name = mysqli_real_escape_string($db, $_POST["last_name"]);
+			$last_name = mysqli_real_escape_string($mysqli, $_POST["last_name"]);
 			$last_name = ucwords($last_name);
-			$mail = mysqli_real_escape_string($db, $_POST["mail"]);
+			$mail = mysqli_real_escape_string($mysqli, $_POST["mail"]);
 			$mail = strtolower($mail);
 			$sql = "SELECT email_adres FROM users WHERE email_adres = '$mail'";
-			$result_mail = mysqli_query($db, $sql);
-			if( !preg_match("/^[A-Za-z -]*$/", $first_name) || !preg_match("/^[A-Za-z -]*$/", $last_name)) 
+			$result_mail = mysqli_query($mysqli, $sql);
+			if( !preg_match("/^[A-Za-z -]*$/", $first_name) || !preg_match("/^[A-Za-z -]*$/", $last_name))
 			{
 				die("The name must only be letters");
 			}
@@ -67,21 +67,21 @@
 			{
 				$gender = 0;
 			}
-			$telephone_number = mysqli_real_escape_string($db, $_POST['tel_num']);
-			$street_name = mysqli_real_escape_string($db, $_POST['street_name']);
-			$house_number = mysqli_real_escape_string($db, $_POST['house_number']);
-			$city = mysqli_real_escape_string($db, $_POST['city']);
-			$postcode = mysqli_real_escape_string($db, $_POST['Post_code']);
+			$telephone_number = mysqli_real_escape_string($mysqli, $_POST['tel_num']);
+			$street_name = mysqli_real_escape_string($mysqli, $_POST['street_name']);
+			$house_number = mysqli_real_escape_string($mysqli, $_POST['house_number']);
+			$city = mysqli_real_escape_string($mysqli, $_POST['city']);
+			$postcode = mysqli_real_escape_string($mysqli, $_POST['Post_code']);
 				if(!preg_match('/^[1-9]{1}[0-9]{3}[A-Z]{2}$/', $postcode)) {
 				die("Postal code must be of this format 9999XX");
 			}
-			$state = mysqli_real_escape_string($db, $_POST['state']);
-			$country = mysqli_real_escape_string($db, $_POST['country']);
+			$state = mysqli_real_escape_string($mysqli, $_POST['state']);
+			$country = mysqli_real_escape_string($mysqli, $_POST['country']);
 			$password = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
 
 				$query1 = "INSERT INTO addresses(streetname, house_number, city, postal_code, state, country)";
 				$query1 .= " VALUES ('$street_name', '$house_number', '$city', '$postcode', '$state', '$country')";
-				$controle1 = mysqli_query($db,$query1);
+				$controle1 = mysqli_query($mysqli,$query1);
 					if ($controle1 == TRUE) {
 						echo "";
 						}
@@ -90,7 +90,7 @@
 					//	die("error adding address");
 					//}
 				$query2 = "SELECT MAX(id) AS `id` FROM addresses";
-				$fetched_id = mysqli_query($db,$query2);
+				$fetched_id = mysqli_query($mysqli,$query2);
 					if ($fetched_id == TRUE) {
 
 						while($sql_adres_id = mysqli_fetch_assoc($fetched_id))
@@ -103,11 +103,11 @@
 
 				$query = "INSERT INTO users(first_name, last_name, email_adres, telephone_number, sex, address_id, password_hash) ";
 				$query .= " VALUES ('$first_name', '$last_name', '$mail', '$telephone_number', '$gender', '$controle2', '$password')";
-				$controle = mysqli_query($db,$query);
+				$controle = mysqli_query($mysqli,$query);
 
 					if ($controle == TRUE) {
 						$sql = "SELECT MAX(id) AS `id` FROM users";
-						$fetched_id = mysqli_query($db,$sql);
+						$fetched_id = mysqli_query($mysqli,$sql);
 						if ($fetched_id == TRUE){
 
 						while($sql_adres_id = mysqli_fetch_assoc($fetched_id))

@@ -11,9 +11,6 @@ if (!empty($_POST)){
 	$result = $mysqli->query(	"SELECT * FROM users WHERE email_adres ='{$email}'");
 
 	if (mysqli_num_rows($result) > 0){
-		$_SESSION["auth"]=true;
-		$_SESSION["email"]=$email;
-
 		while($row = mysqli_fetch_assoc($result)) {
 			$password_sql = $row['password_hash'];
 			$user_id = $row['id'];
@@ -21,13 +18,14 @@ if (!empty($_POST)){
 	}
 
 	if(password_verify($password,$password_sql)){
+		$_SESSION["auth"]=true;
+		$_SESSION["email"]=$email;
+		
 		if($is_admin == "1") {
 			header("Location: admin.php");
-			exit();
 		}
 		elseif($is_admin =="0") {
 			header("Location: ../index.php?id=".$user_id."");
-			exit();
 		}
 	}
 } else {
