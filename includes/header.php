@@ -32,6 +32,25 @@ echo <<<EOT
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
+EOT;
+//error handeling meldingen maken hier voor elke error massage even het volgende nummer gebruiken
+if (isset($_GET['message_code'])) {
+  switch($_GET['message_code']) {
+    case 1:
+      echo"<div class='alert alert-success'>";
+      echo '<strong>Success!</strong> Indicates a successful or positive action.';
+      break;
+    case 2:
+      echo '<div class="alert alert-danger">';
+      echo '<strong>Warning!</strong> somthing whent wrong please contact support.';
+      break;
+    case 3:
+      echo '<div class="alert alert-info">';
+      echo '<strong>oops!</strong> the combination of email and email and password isn`t correct.';
+  }
+ echo "</div>";
+}
+echo <<<EOT
 <body>
   <nav class="navbar navbar-expand-lg navbar-light sticky-top" id="mainNav">
     <div class="container">
