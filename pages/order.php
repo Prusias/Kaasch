@@ -1,19 +1,28 @@
 <?php
-require ('../includes/ddb_connect.php');
-$user_id = $_GET['id'];
-?>
+	require_once("../document_root.php");
 
-<table   width="50%"  align="center">
-	<tr>
-		<td colspan="6"><h2 align="center">Your orders</h2></td>
-	</tr>
-	<tr>
-		<th>Order number</th>
-		<th>order date</th>
-		<th>status</th>
-		<th>payment mothod</th>
-		<th>paid ?</th>
-	</tr>
+	require_once(get_document_root() . "/includes/header.php");
+	require ('../includes/ddb_connect.php');
+	get_header('kaasch', '');
+	
+	session_start();
+	$id=$_SESSION['id'];
+	
+	
+?>
+<p class="h2 text-center"> Your order history </p>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Order number</th>
+      <th scope="col">order date</th>
+      <th scope="col">payment mothod</th>
+      <th scope="col">paid ?</th>
+	  <th scope="col">More</th>
+    </tr>
+  </thead>
+  
+
 
 <?php
 function paid($paid)
@@ -25,23 +34,44 @@ function paid($paid)
 		return "no";
 	}
 }
-$sql = ("SELECT * FROM orders");
-$result = mysqli_query($db, $sql);
+function payment($pay)
+{
+	if($pay == '1')
+	{
+		return "iDEAL";
+	}elseif($pay == '2' )
+	{
+		return "VISA";
+	}elseif($pay == '3')
+	{
+		return "Master Card";
+	}else{
+		return "Paypal";
+	}
+}
+$sql = ("SELECT * FROM orders WHERE user_id='25'");
+$result = mysqli_query($mysqli, $sql);
 if (mysqli_num_rows($result) > 0) {
 
     while($row = mysqli_fetch_assoc($result)) {
-	echo "<tr align=center>";
- 	echo "<td>" . $row['id'] . "</td>";
-  	echo "<td>" . $row['date']. "</td><td> " . $row['status_id'] . "</td>";
-  	echo "<td>" . $row['paymentmethod_id'] ."</td><td> " . paid($row['is_paid']) . "</td>";
-	echo ("<td> <a href=\"spicific_order.php?klantnr=".$row['id']."\">View | </a>");
-	echo "</tr>";
+	echo "<tbody>
+    <tr>
+      <th scope='row'>" . $row['id'] . "</th>
+      <td>" . $row['date'] . "</td>
+      <td>" . payment($row['paymentmethod_id']) ."</td>
+      <td>" . paid($row['is_paid']) . "</td>
+	  <td> <a href=\"order_x.php?order=".$row['id']."\">View </a>
+    </tr>
+    
+  </tbody>";
+
   }
 echo "</table>";
 
 
 } else {
-    echo "Geen records gevonden";
+    echo "No records found";
 }
 
 ?>
+<?php require_once(get_document_root() . "/includes/footer.php"); ?>

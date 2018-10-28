@@ -1,13 +1,15 @@
 <?php
 require ('../includes/ddb_connect.php');
 
+if(isset($_SESSION['loggedin']))
+{
 
-if (!empty($_POST)){
+	if (!empty($_POST)){
 
-	$email = mysqli_real_escape_string($mysqli, $_POST['email']);
-	$password = mysqli_real_escape_string($mysqli, $_POST['password']);
+			$email = mysqli_real_escape_string($mysqli, $_POST['email']);
+			$password = mysqli_real_escape_string($mysqli, $_POST['password']);
 
-	$result = $mysqli->query(	"SELECT * FROM users WHERE email_adres ='{$email}'");
+			$result = $mysqli->query(	"SELECT * FROM users WHERE email_address ='{$email}'");
 
 	if (mysqli_num_rows($result) > 0){
 		while($row = mysqli_fetch_assoc($result)) {
@@ -27,13 +29,21 @@ if (!empty($_POST)){
 			if($is_admin == "1") {
 				header("Location: admin/admin.php");
 			}
-			elseif($is_admin =="0") {
-				header("Location: ../index.php?id=".$user_id."");
+		} else {
+
+			$death = "the combination of email and email and password isn't correct
+			please make a choice: <br>
+			<a href=\"login.php\">login again</a><br>
+			<a href=\"signup.php\">make a new account</a><br>";
+					echo $death;
+				}
 			}
-		}
-	} else {
-		header("Location: login_form.php?message_code=3");
-		}
+}
+else {
+	echo "<p>";
+	echo "You are already logged in";
+	echo "</p>";
+	
 }
 
 ?>
