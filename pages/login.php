@@ -15,11 +15,13 @@ if (!empty($_POST)){
 			$password_sql = $row['password_hash'];
 			$user_id = $row['id'];
 			$is_admin = $row['is_admin'];
+			$first_name = $row['first_name'];
 		}
 
 		if(password_verify($password,$password_sql)){
 			$_SESSION["auth"]=true;
 			$_SESSION["email"]=$email;
+			$_SESSION["first_name"] = $first_name;
 
 			if($is_admin == "1") {
 				header("Location: admin.php");
