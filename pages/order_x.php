@@ -37,7 +37,7 @@
 				<tr>
 				  <th scope='row'>" . $row['name'] . "</th>
 				  <td>" . $row['amount'] . "</td>
-				  <td>" . payment($row['total']) ."</td>
+				  <td>" . $row['total'] ."</td>
 				</tr>
     
 			</tbody>";
