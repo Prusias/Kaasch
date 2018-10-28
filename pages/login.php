@@ -13,15 +13,18 @@ if(isset($_SESSION['loggedin']))
 
 			$result = $mysqli->query(	"SELECT * FROM users WHERE email_address ='{$email}'");
 
-			if (mysqli_num_rows($result) > 0){
-				$_SESSION['loggedin']=true;
-			 	$_SESSION['id']=$row['id'];
+	if (mysqli_num_rows($result) > 0){
+		while($row = mysqli_fetch_assoc($result)) {
+			$password_sql = $row['password_hash'];
+			$user_id = $row['id'];
+			$is_admin = $row['is_admin'];
+			$first_name = $row['first_name'];
+		}
 
-				while($row = mysqli_fetch_assoc($result)) {
-					$password_sql = $row['password_hash'];
-					$user_id = $row['id'];
-					$is_admin = $row['is_admin'];
-			}
+		if(password_verify($password,$password_sql)){
+			$_SESSION["auth"]=true;
+			$_SESSION["email"]=$email;
+			$_SESSION["first_name"] = $first_name;
 
 			if(password_verify($password,$password_sql)){
 				if($is_admin == "1") {

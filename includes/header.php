@@ -1,11 +1,13 @@
 <?php
 
-function user_check() {
+function login_check() {
   session_start();
-  if($_SESSION["auth"]==true) {
-    return true;
-  }else{
-    return false;
+  if(isset($_SESSION["auth"])){
+    if($_SESSION["auth"]==true) {
+      return true;
+    }else{
+      return false;
+    }
   }
 }
 
@@ -47,6 +49,7 @@ if (isset($_GET['message_code'])) {
     case 3:
       echo '<div class="alert alert-info">';
       echo '<strong>oops!</strong> the combination of email and email and password isn`t correct.';
+      break;
   }
  echo "</div>";
 }
@@ -60,8 +63,16 @@ echo <<<EOT
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="./pages/login_form.php">login</a>
+        <li class="nav-item">
+EOT;
+if (login_check()) {
+  echo "<a class='nav-link js-scroll-trigger' href='#'>welcom {$_SESSION['first_name']}</a> ";
+} else {
+    echo '<a class="nav-link js-scroll-trigger" href="./pages/login_form.php">login</a>';
+}
+
+
+echo <<<EOT
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#about">About</a>
