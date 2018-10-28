@@ -1,5 +1,4 @@
 <?php
-session_start();
 require ('../includes/ddb_connect.php');
 
 
@@ -19,12 +18,14 @@ if (!empty($_POST)){
 		}
 
 		if(password_verify($password,$password_sql)){
+			session_start();
 			$_SESSION["auth"]=true;
 			$_SESSION["email"]=$email;
 			$_SESSION["first_name"] = $first_name;
+			$_SESSION["is_admin"] = $is_admin;
 
 			if($is_admin == "1") {
-				header("Location: admin.php");
+				header("Location: admin/admin.php");
 			}
 			elseif($is_admin =="0") {
 				header("Location: ../index.php?id=".$user_id."");

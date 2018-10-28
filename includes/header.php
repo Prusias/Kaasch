@@ -1,7 +1,9 @@
 <?php
 
 function login_check() {
-  session_start();
+  if(session_id() == '') {
+    session_start();
+  }
   if(isset($_SESSION["auth"])){
     if($_SESSION["auth"]==true) {
       return true;
@@ -16,9 +18,10 @@ function login_check() {
  * @param string $description Description of the page
  */
 function get_header($title,$description ){
-
 $relative_path = get_relative_root();
-
+if(session_id() == '') {
+    session_start();
+}
 
 echo <<<EOT
 <!DOCTYPE html>
@@ -65,10 +68,11 @@ echo <<<EOT
         <ul class="navbar-nav ml-auto">
         <li class="nav-item">
 EOT;
+// veranderen van de header als je ingelogd bent
 if (login_check()) {
   echo "<a class='nav-link js-scroll-trigger' href='#'>welcom {$_SESSION['first_name']}</a> ";
 } else {
-    echo '<a class="nav-link js-scroll-trigger" href="./pages/login_form.php">login</a>';
+    echo "<a class='nav-link js-scroll-trigger' href='{$relative_path}/pages/login_form.php'>login</a>";
 }
 
 
@@ -83,11 +87,24 @@ echo <<<EOT
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
+EOT;
+if (login_check()) {
+  if ($_SESSION['is_admin']) {
+    echo "<li class='nav-item'>
+      <a class='nav-link js-scroll-trigger' href='{$relative_path}/pages/admin/admin.php'>admin pannel</a>
+    </li>";
+  }
+  echo "<li class='nav-item'>
+    <a class='nav-link js-scroll-trigger' href='{$relative_path}/pages/logout.php'>logout</a>
+  </li>";
+}
+echo <<<EOT
         </ul>
       </div>
     </div>
   </nav>
 EOT;
+session_write_close();
 }
 
 ?>
