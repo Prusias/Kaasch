@@ -9,7 +9,9 @@ $user_id = mysqli_real_escape_string($mysqli, $_GET['user_id']);
 
 $result = $mysqli->query("SELECT users.first_name, users.last_name, users.is_admin, users.sex, users.email_adres, users.telephone_number, users.address_id, addresses.city, addresses.country, addresses.house_number, addresses.postal_code, addresses.state, addresses.streetname FROM users
 INNER JOIN addresses ON addresses.id = users.address_id WHERE users.id={$user_id}");
+
 $row = $result->fetch_assoc();
+
 $is_admin = '';
 if ($row['is_admin'] == true) {
   $is_admin = 'checked';
@@ -30,64 +32,64 @@ echo <<<EOT
             </div>
           </div>
 
-          <form class="col-4">
+          <form action="update_user.php?user_id={$user_id}&address_id={$row['address_id']}" method="POST">
             <div class="form-group">
               <label for="first_name">first name</label>
-              <input disabled type="text" class="form-control" id="fist_name" aria-describedby="first name" value="{$row['first_name']}">
+              <input name="first_name" type="text" class="form-control" id="fist_name" value="{$row['first_name']}">
             </div>
             <div class="form-group">
               <label for="last_name">Last name</label>
-              <input disabled type="text" class="form-control" id="last_name" value="{$row['last_name']}">
+              <input name="last_name" type="text" class="form-control" id="last_name" value="{$row['last_name']}">
             </div>
             <div class="form-group">
               <label for="email_adres">Email address</label>
-              <input disabled type="email" class="form-control" id="email_adres" value="{$row['email_adres']}" >
+              <input name="email_adres" type="email" class="form-control" id="email_adres" value="{$row['email_adres']}" >
             </div>
             <div class="form-group">
               <label for="telephone_number">telephone number</label>
-              <input disabled type="text" class="form-control" id="telephone_number" value="{$row['telephone_number']}">
+              <input name="telephone_number" type="text" class="form-control" id="telephone_number" value="{$row['telephone_number']}">
             </div>
             <div class="form-check">
-              <input disabled type="checkbox" {$is_admin} class="form-check-input" id="is_admin">
+              <input name="is_admin" type="checkbox" {$is_admin} class="form-check-input" id="is_admin">
               <label class="form-check-label" for="is_admin">is admin</label>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Example select</label>
-              <select disabled class="form-control" id="exampleFormControlSelect1">
+              <label for="exampleFormControlSelect1">sex</label>
+              <select name="sex" class="form-control" id="sex">
                 <option {$male_select} value='1'>male</option>
                 <option {$female_select} value='0'>female</option>
               </select>
             </div>
             <div class="form-group">
               <label for="streetname">streetname</label>
-              <input disabled type="text" class="form-control" id="streetname" value="{$row['streetname']}">
+              <input name="streetname" type="text" class="form-control" id="streetname" value="{$row['streetname']}">
             </div>
             <div class="form-group">
               <label for="house_number">house number</label>
-              <input disabled type="text" class="form-control" id="house_number" value="{$row['house_number']}">
+              <input name="house_number" type="text" class="form-control" id="house_number" value="{$row['house_number']}">
             </div>
             <div class="form-group">
               <label for="postal_code">postal code</label>
-              <input disabled type="text" class="form-control" id="postal_code" value="{$row['postal_code']}">
+              <input name="postal_code" type="text" class="form-control" id="postal_code" value="{$row['postal_code']}">
             </div>
             <div class="form-group">
               <label for="telephone_number">stater</label>
-              <input disabled type="text" class="form-control" id="state" value="{$row['state']}">
+              <input name="state" type="text" class="form-control" id="state" value="{$row['state']}">
             </div>
             <div class="form-group">
               <label for="city">city</label>
-              <input disabled type="text" class="form-control" id="city" value="{$row['city']}">
+              <input name="city" type="text" class="form-control" id="city" value="{$row['city']}">
             </div>
             <div class="form-group">
               <label for="country">country</label>
-              <input disabled type="text" class="form-control" id="country" value="{$row['country']}">
+              <input name="country" type="text" class="form-control" id="country" value="{$row['country']}">
             </div>
             <div class="form-group">
-              <a class="btn btn-primary" href="user_edit.php?user_id={$user_id}" role="button">edit</a>
+              <input type="submit" class="btn btn-primary" value="Submit">
+              <a class="btn btn-primary" href="user.php?user_id={$user_id}" role="button">back</a>
             </div>
           </form>
 </div>
 EOT;
-
 require_once(get_document_root() . "/includes/footer.php");
  ?>
