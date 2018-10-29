@@ -5,13 +5,13 @@
 	require_once(get_document_root() . "/includes/header.php");
 	
 	get_header('kaasch', '');
-	session_start();
+	//ession_start();
 	require ('../includes/ddb_connect.php');
 	
 	if (!($_SERVER["REQUEST_METHOD"] == "POST")){
 
 ?>
-		<body> 
+	
 			<div class="container">
 				<div class="row">
 					<div class="col-12">

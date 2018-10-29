@@ -160,3 +160,31 @@ html {
   justify-content: space-between;
 }
 /*#endregion*/
+
+/*#region Shopping Cart*/
+.shopping-cart .borders {
+  border: 1px solid black;
+
+}
+.shopping-cart table {
+  width: 100%;
+}
+.shopping-cart td {
+  padding: 0.2rem;
+  text-align: left;
+}
+
+/*#endregion*/
+
+/*#region Reviews*/
+.review-item {
+  display:flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 1rem;
+  
+}
+
+
+/*#endregion*/
