@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<?php
+<?php
 	require_once("../document_root.php");
 
 	require_once(get_document_root() . "/includes/header.php");
@@ -9,9 +6,7 @@
 
 		
 	?>
-    <title>Kaasch Login</title>
-</head>
-<body>
+	
 	<div class="container">
         <div class="row">
             <div class="col-12">
