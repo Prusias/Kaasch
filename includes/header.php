@@ -72,7 +72,7 @@ echo <<<EOT
 EOT;
 // veranderen van de header als je ingelogd bent
 if (login_check()) {
-  echo "<a class='nav-link js-scroll-trigger' href='#'>welcom {$_SESSION['first_name']}</a> ";
+  echo "<a class='nav-link js-scroll-trigger' href='{$relative_path}/pages/user.php'>welcom {$_SESSION['first_name']}</a> ";
 } else {
     echo "<a class='nav-link js-scroll-trigger' href='{$relative_path}/pages/login_form.php'>login</a>";
 }

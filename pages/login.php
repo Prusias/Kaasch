@@ -23,6 +23,7 @@ if (!empty($_POST)){
 			$_SESSION["email"]=$email;
 			$_SESSION["first_name"] = $first_name;
 			$_SESSION["is_admin"] = $is_admin;
+			$_SESSION["user_id"] = $user_id;
 
 			if($is_admin == "1") {
 				header("Location: admin/admin.php");
