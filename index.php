@@ -64,7 +64,11 @@
 									</div>
 									<div class="product-order">
 										<span>Price: &euro;{$row['price']}</span>
-										<button class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
+										<form method="post" action="{$relative_root}/logic/add_product.php">
+											<input name="product_id" type="text" class="d-none" value="{$row["id"]}">
+											<input name="return_url" type="text" class="d-none" value="">
+											<button type="submit" name="submit" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
+										</form>
 										<button class="btn btn-secondary">View</button>
 									</div>
 								</div>
