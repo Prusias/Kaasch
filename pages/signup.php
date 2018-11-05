@@ -8,7 +8,7 @@
 	//ession_start();
 	require ('../includes/ddb_connect.php');
 	
-	if (!($_SERVER["REQUEST_METHOD"] == "POST")){
+	if (!($_SERVER["REQUEST_METHOD"] == "POST")){}
 
 ?>
 	

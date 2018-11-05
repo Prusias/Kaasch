@@ -11,6 +11,6 @@
         if(RUN_MODE_PRODUCTION === true) {
             return "";
         }
-        return "";
+        return "/htdocs";
     }
 ?>

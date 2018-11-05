@@ -64,8 +64,8 @@
 									</div>
 									<div class="product-order">
 										<span>Price: &euro;{$row['price']}</span>
-										<button><i class="fas fa-shopping-cart"></i></button>
-										<button>View</button>
+										<button class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
+										<button class="btn btn-secondary">View</button>
 									</div>
 								</div>
 							</div>
