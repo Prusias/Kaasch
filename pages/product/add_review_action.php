@@ -1,5 +1,5 @@
 <?php
-    require_once("../document_root.php");
+    require_once("../../document_root.php");
     require_once(get_document_root() . '/includes/ddb_connect.php');
     session_start();
 
