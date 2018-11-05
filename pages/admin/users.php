@@ -5,7 +5,7 @@ get_header('kaasch', '');
 require_once(get_document_root() . "/includes/admin_page.php");
 require_once(get_document_root() . "/includes/ddb_connect.php");
 
-$result = $mysqli->query(	"SELECT id, first_name, last_name, email_adres FROM users");
+$result = $mysqli->query(	"SELECT id, first_name, last_name, email_address FROM users");
 
 echo '<div class="container">
         <div class="row">
@@ -30,7 +30,7 @@ foreach($result as $row) {
       <th scope='row'>{$row['id']}</th>
       <td>{$row['first_name']}</td>
       <td>{$row['last_name']}</td>
-      <td>{$row['email_adres']}</td>
+      <td>{$row['email_address']}</td>
       <td>
         <a href='{$relative_path}/pages/admin/user.php?user_id={$row['id']}'>show user</a>
       </td>

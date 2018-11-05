@@ -89,7 +89,7 @@ EOT;
 			$last_name = ucwords($last_name);
 			$mail = mysqli_real_escape_string($mysqli, $_POST["mail"]);
 			$mail = strtolower($mail);
-			$sql = "SELECT email_adres FROM users WHERE email_adres = '$mail'";
+			$sql = "SELECT email_address FROM users WHERE email_address = '$mail'";
 			$result_mail = mysqli_query($mysqli, $sql);
 			if( !preg_match("/^[A-Za-z -]*$/", $first_name) || !preg_match("/^[A-Za-z -]*$/", $last_name))
 			{
@@ -141,7 +141,7 @@ EOT;
 						}
 					}
 
-				$query = "INSERT INTO users(first_name, last_name, email_adres, telephone_number, sex, address_id, password_hash) ";
+				$query = "INSERT INTO users(first_name, last_name, email_address, telephone_number, gender, addresses_id, password_hash) ";
 				$query .= " VALUES ('$first_name', '$last_name', '$mail', '$telephone_number', '$gender', '$controle2', '$password')";
 
 					if ($mysqli->query($query)) {

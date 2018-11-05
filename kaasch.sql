@@ -51,7 +51,7 @@ CREATE TABLE `orders` (
   `status_id` int(32) NOT NULL,
   `paymentmethod_id` int(32) NOT NULL,
   `is_paid` tinyint(1) NOT NULL,
-  `address_id` int(32) NOT NULL,
+  `addresses_id` int(32) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -136,10 +136,10 @@ CREATE TABLE `users` (
   `id` int(32) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
-  `email_adres` varchar(50) NOT NULL,
+  `email_address` varchar(50) NOT NULL,
   `telephone_number` varchar(255) NOT NULL,
-  `sex` tinyint(1) NOT NULL,
-  `address_id` int(32) NOT NULL DEFAULT '0',
+  `gender` tinyint(1) NOT NULL,
+  `addresses_id` int(32) NOT NULL DEFAULT '0',
   `password_hash` varchar(255) NOT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -161,7 +161,7 @@ ALTER TABLE `addresses`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_orders_addresses_id` (`address_id`),
+  ADD KEY `FK_orders_addresses_id` (`addresses_id`),
   ADD KEY `FK_orders_paymentmethods_id` (`paymentmethod_id`),
   ADD KEY `FK_orders_statusses_id` (`status_id`),
   ADD KEY `FK_orders_users_id` (`user_id`);
@@ -203,7 +203,7 @@ ALTER TABLE `status`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_users_addresses_id` (`address_id`);
+  ADD KEY `FK_users_addresses_id` (`addresses_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -253,7 +253,7 @@ ALTER TABLE `users`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `FK_orders_addresses_id` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_orders_addresses_id` FOREIGN KEY (`addresses_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_orders_paymentmethods_id` FOREIGN KEY (`paymentmethod_id`) REFERENCES `paymentmethods` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_orders_statusses_id` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_orders_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -276,7 +276,7 @@ ALTER TABLE `reviews`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `FK_users_addresses_id` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FK_users_addresses_id` FOREIGN KEY (`addresses_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

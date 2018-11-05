@@ -7,8 +7,8 @@ require_once(get_document_root() . "/includes/ddb_connect.php");
 
 $user_id = mysqli_real_escape_string($mysqli, $_GET['user_id']);
 
-$result = $mysqli->query("SELECT users.first_name, users.last_name, users.is_admin, users.sex, users.email_adres, users.telephone_number, users.address_id, addresses.city, addresses.country, addresses.house_number, addresses.postal_code, addresses.state, addresses.streetname FROM users
-INNER JOIN addresses ON addresses.id = users.address_id WHERE users.id={$user_id}");
+$result = $mysqli->query("SELECT users.first_name, users.last_name, users.is_admin, users.gender, users.email_address, users.telephone_number, users.addresses_id, addresses.city, addresses.country, addresses.house_number, addresses.postal_code, addresses.state, addresses.streetname FROM users
+INNER JOIN addresses ON addresses.id = users.addresses_id WHERE users.id={$user_id}");
 
 $row = $result->fetch_assoc();
 
@@ -18,7 +18,7 @@ if ($row['is_admin'] == true) {
 }
 $male_select = '';
 $female_select = '';
-if ($row['sex']==1){
+if ($row['gender']==1){
   $male_select = 'selected';
 } else {
   $female_select = 'selected';
@@ -32,7 +32,7 @@ echo <<<EOT
             </div>
           </div>
 
-          <form action="update_user.php?user_id={$user_id}&address_id={$row['address_id']}" method="POST">
+          <form action="update_user.php?user_id={$user_id}&addresses_id={$row['addresses_id']}" method="POST">
             <div class="form-group">
               <label for="first_name">first name</label>
               <input name="first_name" type="text" class="form-control" id="fist_name" value="{$row['first_name']}">
@@ -42,8 +42,8 @@ echo <<<EOT
               <input name="last_name" type="text" class="form-control" id="last_name" value="{$row['last_name']}">
             </div>
             <div class="form-group">
-              <label for="email_adres">Email address</label>
-              <input name="email_adres" type="email" class="form-control" id="email_adres" value="{$row['email_adres']}" >
+              <label for="email_address">Email address</label>
+              <input name="email_address" type="email" class="form-control" id="email_address" value="{$row['email_address']}" >
             </div>
             <div class="form-group">
               <label for="telephone_number">telephone number</label>
@@ -54,8 +54,8 @@ echo <<<EOT
               <label class="form-check-label" for="is_admin">is admin</label>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1">sex</label>
-              <select name="sex" class="form-control" id="sex">
+              <label for="exampleFormControlSelect1">gender</label>
+              <select name="gender" class="form-control" id="gender">
                 <option {$male_select} value='1'>male</option>
                 <option {$female_select} value='0'>female</option>
               </select>

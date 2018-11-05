@@ -7,7 +7,7 @@ if (!empty($_POST)){
 	$email = mysqli_real_escape_string($mysqli, $_POST['email']);
 	$password = mysqli_real_escape_string($mysqli, $_POST['password']);
 
-	$result = $mysqli->query(	"SELECT * FROM users WHERE email_adres ='{$email}'");
+	$result = $mysqli->query(	"SELECT * FROM users WHERE email_address ='{$email}'");
 
 	if (mysqli_num_rows($result) > 0){
 		while($row = mysqli_fetch_assoc($result)) {
