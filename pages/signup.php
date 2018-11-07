@@ -77,7 +77,7 @@
 					</div>
 
 
-				<center>
+
 EOT;
 
 		}
@@ -93,15 +93,15 @@ EOT;
 			$result_mail = mysqli_query($mysqli, $sql);
 			if( !preg_match("/^[A-Za-z -]*$/", $first_name) || !preg_match("/^[A-Za-z -]*$/", $last_name))
 			{
-				echo "First and Last name must be only letters";
+				header("Location: signup.php?message_code=8");
 			}
 			if (!filter_var($mail, FILTER_VALIDATE_EMAIL))
 			{
-				echo "the E-mail you entred isn't valid";
+				header("Location: signup.php?message_code=6");
 			}elseif (mysqli_num_rows($result_mail) > 0 )
 			{
 
-				echo "The E-mail is already Taken";
+				header("Location: signup.php?message_code=7");
 			}
 			$gender = $_POST['gender'];
 			if($gender == 'male')
@@ -118,7 +118,7 @@ EOT;
 			$city = mysqli_real_escape_string($mysqli, $_POST['city']);
 			$postcode = mysqli_real_escape_string($mysqli, $_POST['Post_code']);
 				if(!preg_match('/^[1-9]{1}[0-9]{3}[A-Z]{2}$/', $postcode)) {
-				die("Postal code must be of this format 9999XX");
+				header("Location: signup.php?message_code=9");
 			}
 			$state = mysqli_real_escape_string($mysqli, $_POST['state']);
 			$country = mysqli_real_escape_string($mysqli, $_POST['country']);
@@ -155,12 +155,12 @@ EOT;
 						}}
 						$index="../index.php";
 						$_SESSION['loggedin']=true;
-						echo "you have signup successfully<br/><br> ";
+						echo header("Location: signup.php?message_code=5");
 						echo "<a href=".$index."?id=".$user_id."> Go to home page </a>";
 
 						}else	{
-							print_r($query);
-						//die("something went wrong please try again" . $query );
+							
+						header("Location: signup.php?message_code=4");
 					}
 
 	}

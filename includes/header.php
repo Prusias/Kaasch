@@ -53,7 +53,39 @@ if (isset($_GET['message_code'])) {
       break;
     case 3:
       echo '<div class="alert alert-info">';
-      echo '<strong>oops!</strong> the combination of email and email and password isn`t correct.';
+      echo '<strong>oops!</strong> the combination of email and email and password isn\'t correct.';
+      break;
+    case 4:
+      echo '<div class="alert alert-danger">';
+      echo '<strong>Warning!</strong> Something went wrong please try again.';
+      break;
+	case 5:
+      echo"<div class='alert alert-success'>";
+      echo '<strong>Success!</strong> You have signed up successfully.';
+      break;
+    case 6:
+      echo '<div class="alert alert-info">';
+      echo '<strong>oops!</strong> The email you entred isn\'t valid.';
+      break;
+	case 7:
+      echo '<div class="alert alert-info">';
+      echo '<strong>oops!</strong> The E-mail is already Taken.';
+      break;
+	case 8:
+      echo '<div class="alert alert-info">';
+      echo '<strong>oops!</strong> The name can only be letters.';
+      break;
+	case 9:
+      echo '<div class="alert alert-info">';
+      echo '<strong>oops!</strong> Postal code must be of this format 9999XX.';
+      break;
+	case 10:
+      echo '<div class="alert alert-info">';
+      echo '<strong>oops!</strong> Sorry but we couldn\'t find your E-mail please try again.';
+      break;
+	case 11:
+      echo"<div class='alert alert-success'>";
+      echo '<strong>Success!</strong> Your password has ben changed successfully.';
       break;
   }
  echo "</div>";

@@ -24,7 +24,7 @@
 						<div class="form-group">
 							<input type="submit" name="Submit" value="Login" class="btn btn-primary">
 							<input name="reset" type="reset" id="reset" value="Empty the form" class="btn btn-primary">
-							<a href="forgot_password.php" class="btn btn-primary"> I forgot my password</a>
+							<a href="password_forgotten.php" class="btn btn-primary"> I forgot my password</a>
 						</div>
 					</form>
 					<p class="mt-5">
