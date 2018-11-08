@@ -1,8 +1,11 @@
 <?php
 	require_once("../../document_root.php");
+	require (get_document_root().'\includes/ddb_connect.php');
+	// require (get_document_root().'\includes/databases.php');
 
 	require_once(get_document_root() . "/includes/header.php");
 	get_header('kaasch', '');
+	$db = $mysqli;
 ?>
 
   <h3>Order overview</h3>

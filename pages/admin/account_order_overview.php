@@ -1,16 +1,23 @@
 <?php
 	require_once("..\..\document_root.php");
-	require (get_document_root().'\includes/databases.php');
+	require (get_document_root().'\includes/ddb_connect.php');
+	// require (get_document_root().'\includes/databases.php');
 
 	require_once(get_document_root() . "/includes/header.php");
 	get_header('kaasch', '');
+	$userid = $_GET['user_id'];
+
+$db = $mysqli;
+
 	$sql = (
 		"SELECT `users_id`, o.`id` AS `orderid`, `date`, s.`description` AS `statusdescription`, `first_name`, `last_name`, sum(`price`*`amount`) AS `total`
 			FROM `orders` o
-				JOIN `users` u ON o.`id` = u.`id`
+				JOIN `users` u ON o.`users_id` = u.`id`
 				JOIN `orders_has_products` ohp ON o.`id` = ohp.`orders_id`
 				JOIN `products` p ON ohp.`products_id` = p.`id`
-				JOIN `status` s ON s.`id` = o.`status_id`;
+				JOIN `status` s ON s.`id` = o.`status_id`
+      GROUP BY o.`id`
+			HAVING `users_id` = $userid;
 			");
 			$result = mysqli_query($db, $sql);
 			$runOnce = 1;
@@ -61,13 +68,13 @@
 						<td><b><a href='account_order.php?userid=$userid&orderid=$orderid'>></a></b></td>
 					</tr>
 					</thread>
-					</table>
 					</div>
 				");
 			}
+			echo "</table>";
 		}
 		else {
-			echo "geen records gevonden";
+			echo "<h3>No records found</h3>";
 		}
 ?>
   <?php require_once(get_document_root() . "\includes\\footer.php"); ?>
