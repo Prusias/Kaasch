@@ -3,6 +3,7 @@
 
 	require_once(get_document_root() . "/includes/header.php");
 	require ('../includes/ddb_connect.php');
+	
 	get_header('kaasch', '');
 	
 	session_start();
