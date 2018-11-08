@@ -85,7 +85,7 @@
 									");
 									mysqli_query($db, $sql);
 								}
-								//header("location: account_order.php?userid={$_GET['userid']}&orderid={$_GET['orderid']}");
+								header("location: account_order.php?userid={$_GET['userid']}&orderid={$_GET['orderid']}");
 							}
 	$sql = (
 		"SELECT `users_id`, o.`id`, `date`, s.`description` AS `statusdescription`, `first_name`, `last_name`, p.`name` AS `productname`, `email_address`,
@@ -244,12 +244,24 @@
 }
 
 echo ("
+<table class='table pl-5' style='display:inline; width:15rem'>
+<thread><tr>
+<td>
 <form method='post' action='account_order.php?userid=$userid&orderid=$orderid'>
 <input class='btn btn-danger' type='submit' name='cancel' value='Cancel'>
 </form>
+</td>
+
+
 ");
 ?>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']), "?userid=$userid", "&orderid=$orderid";?>" style="display: inline-block">
-<input class="btn btn-primary" type="submit" name="confirm" value="Confirm Changes">
-</form>
+<td>
+	<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']), "?userid=$userid", "&orderid=$orderid";?>" style="display: inline-block">
+	<input class="btn btn-primary" type="submit" name="confirm" value="Confirm Changes">
+	</form>
+</td>
+</tr>
+</thread>
+</table>
+
 <?php require_once(get_document_root() . "/includes/footer.php"); ?>
