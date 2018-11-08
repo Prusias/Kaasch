@@ -34,22 +34,22 @@ function paid($paid)
 		return "no";
 	}
 }
-function payment($pay)
-{
-	if($pay == '1')
-	{
-		return "iDEAL";
-	}elseif($pay == '2' )
-	{
-		return "VISA";
-	}elseif($pay == '3')
-	{
-		return "Master Card";
-	}else{
-		return "Paypal";
-	}
-}
-$sql = ("SELECT * FROM orders WHERE user_id='25'");
+// function payment($pay)
+// {
+	// if($pay == '1')
+	// {
+		// return "iDEAL";
+	// }elseif($pay == '2' )
+	// {
+		// return "VISA";
+	// }elseif($pay == '3')
+	// {
+		// return "Master Card";
+	// }else{
+		// return "Paypal";
+	// }
+// }
+$sql = ("SELECT * FROM orders JOIN paymnetmethods WHERE user_id='$id'");
 $result = mysqli_query($mysqli, $sql);
 if (mysqli_num_rows($result) > 0) {
 
@@ -58,7 +58,7 @@ if (mysqli_num_rows($result) > 0) {
     <tr>
       <th scope='row'>" . $row['id'] . "</th>
       <td>" . $row['date'] . "</td>
-      <td>" . payment($row['paymentmethod_id']) ."</td>
+      <td>" . $row['name'] ."</td>
       <td>" . paid($row['is_paid']) . "</td>
 	  <td> <a href=\"order_x.php?order=".$row['id']."\">View </a>
     </tr>

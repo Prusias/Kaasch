@@ -4,10 +4,10 @@ require ('../includes/ddb_connect.php');
 
 if (!empty($_POST)){
 
-	$email = mysqli_real_escape_string($mysqli, $_POST['email']);
+	$email = strtolower(mysqli_real_escape_string($mysqli, $_POST['email']));
 	$password = mysqli_real_escape_string($mysqli, $_POST['password']);
 
-	$result = $mysqli->query(	"SELECT * FROM users WHERE email_address ='{$email}'");
+	$result = $mysqli->query("SELECT * FROM users WHERE email_address ='$email'");
 
 	if (mysqli_num_rows($result) > 0){
 		while($row = mysqli_fetch_assoc($result)) {
@@ -36,5 +36,4 @@ if (!empty($_POST)){
 		header("Location: login_form.php?message_code=3");
 		}
 }
-
 ?>

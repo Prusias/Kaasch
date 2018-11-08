@@ -61,7 +61,7 @@ if (isset($_GET['message_code'])) {
       break;
     case 6:
       echo '<div class="alert alert-info">';
-      echo '<strong>oops!</strong> The email you entred isn\'t valid.';
+      echo '<strong>oops!</strong> The email you entred isn`t valid.';
       break;
 	case 7:
       echo '<div class="alert alert-info">';
@@ -77,7 +77,7 @@ if (isset($_GET['message_code'])) {
       break;
 	case 10:
       echo '<div class="alert alert-info">';
-      echo '<strong>oops!</strong> Sorry but we couldn\'t find your E-mail please try again.';
+      echo '<strong>oops!</strong> Sorry but we couldn`t find your E-mail please try again.';
       break;
 	case 11:
       echo"<div class='alert alert-success'>";
