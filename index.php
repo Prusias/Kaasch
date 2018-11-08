@@ -64,7 +64,7 @@
 							<div class="col-4">
 								<div class="product">
 									<div class="product-image">
-										<img src="{$relative_root}/images/kaas1.jpg" />
+										<img src="{$relative_root}/images/1.jpg" />
 									</div>
 									<div class="product-name">
 										<h3>{$row['name']}</h3>
