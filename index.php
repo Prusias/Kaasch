@@ -46,9 +46,20 @@
 					if (mysqli_num_rows($result) > 0){
 						$relative_root = get_relative_root();
 						while($row = mysqli_fetch_assoc($result)) {
-							
+							$path = "";
+							$relative_root = get_relative_root();
 							//echo $row['name'] . " | " . $row['description']. " | " . $row['price']. " | " . $row['shelflife'];
-							
+							if (login_check()) {
+								  if ($_SESSION['is_admin']) {
+									$path = " <a href='{$relative_root}/pages/product/product_admin.php?id={$row["id"]}'>view</a>";
+								  }
+								  else{
+									  $path = " <a href='{$relative_root}/pages/product/product.php?id={$row["id"]}'>view</a>";
+								  }
+									  
+								} else {
+									$path = " <a href='{$relative_root}/pages/product/product.php?id={$row["id"]}'>view</a>";
+								}
 							echo <<<EOT
 							<div class="col-4">
 								<div class="product">
@@ -65,7 +76,7 @@
 											<input name="return_url" type="text" class="d-none" value="">
 											<button type="submit" name="submit" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
 										</form>
-										<button class="btn btn-secondary">View</button>
+										{$path}
 									</div>
 								</div>
 							</div>

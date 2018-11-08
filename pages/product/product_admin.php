@@ -3,6 +3,8 @@
 	require_once(get_document_root() . '/includes/ddb_connect.php');
 	require_once(get_document_root() . "/includes/header.php");
     get_header('kaasch', 'kaasisbaas');
+	require_once("../../document_root.php");
+	require_once(get_document_root() . "/includes/admin_page.php");
 
 
 ?>
