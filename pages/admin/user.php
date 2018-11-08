@@ -52,7 +52,7 @@ echo <<<EOT
               <label class="form-check-label" for="is_admin">is admin</label>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Example select</label>
+              <label for="exampleFormControlSelect1">Gender</label>
               <select disabled class="form-control" id="exampleFormControlSelect1">
                 <option {$male_select} value='1'>male</option>
                 <option {$female_select} value='0'>female</option>

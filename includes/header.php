@@ -23,7 +23,6 @@ $relative_path = get_relative_root();
 if(session_id() == '') {
     session_start();
 }
-
 echo <<<EOT
 <!DOCTYPE html>
 <html>
@@ -35,10 +34,7 @@ echo <<<EOT
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="{$relative_path}/css/main.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</head>
+    </head>
 EOT;
 //error handeling meldingen maken hier voor elke error massage even het volgende nummer gebruiken
 if (isset($_GET['message_code'])) {
@@ -104,7 +100,7 @@ echo <<<EOT
 EOT;
 // veranderen van de header als je ingelogd bent
 if (login_check()) {
-  echo "<a class='nav-link js-scroll-trigger' href='{$relative_path}/pages/user.php'>welcom {$_SESSION['first_name']}</a> ";
+  echo "<a class='nav-link js-scroll-trigger' href='{$relative_path}/pages/user.php'>welcome {$_SESSION['first_name']}</a> ";
 } else {
     echo "<a class='nav-link js-scroll-trigger' href='{$relative_path}/pages/login_form.php'>login</a>";
 }
@@ -137,6 +133,10 @@ echo <<<EOT
       </div>
     </div>
   </nav>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
 EOT;
 session_write_close();
 }
