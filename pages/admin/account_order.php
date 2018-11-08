@@ -1,24 +1,27 @@
 <?php
 	require_once("..\..\document_root.php");
-	require (get_document_root().'\includes/databases.php');
+	// require (get_document_root().'\includes/databases.php');
+	require (get_document_root().'\includes/ddb_connect.php');
 
 	require_once(get_document_root() . "\includes\header.php");
 	get_header('kaasch', '');
 	$userid = $_GET['userid'];
 	$orderid = $_GET['orderid'];
 
+	$db = $mysqli;
+	
 	$sql = (
 		"SELECT `users_id`, o.`id`, `date`, s.`description` AS `statusdescription`, `first_name`, `last_name`, p.`name` AS `productname`, `email_address`,
 			`streetname`, `house_number`, `city`, `postal_code`, `country`, pm.`name` AS `paymentmethodname`, `amount`, `price`*`amount` AS `pricesum`
-				FROM `orders` o
-					JOIN `users` u ON o.`id` = u.`id`
-					JOIN `orders_has_products` ohp ON o.`id` = ohp.`orders_id`
-					JOIN `products` p ON ohp.`products_id` = p.`id`
-					JOIN `addresses` a ON u.`addresses_id` = u.`id`
-					JOIN `paymentmethods` pm ON pm.`id` = o.`paymentmethods_id`
-					JOIN `status` s ON s.`id` = o.`status_id`
-		GROUP BY p.`name`
-		HAVING `users_id` = $userid AND o.`id` = $orderid;
+		FROM `orders` o
+			JOIN `users` u ON u.`id` = o.`users_id`
+      JOIN `orders_has_products` ohp ON ohp.`orders_id` = o.`id`
+      JOIN `products` p ON p.`id` = ohp.`products_id`
+      JOIN `addresses` a ON a.`id` = u.`addresses_id`
+      JOIN `paymentmethods` pm ON pm.`id` = o.`paymentmethods_id`
+      JOIN `status` s ON s.`id` = o.`status_id`
+  WHERE `users_id` = $userid AND o.`id` = $orderid
+  ORDER BY `productname`;
 	");
 	$result = mysqli_query($db, $sql);
 	$sumprice = 0;
@@ -34,7 +37,7 @@
 				<table class='table' style='width:10rem'>
 				<thread>
 				<tr>
-					<td><b>User ID: </b>$userid</td>
+					<td><b>User ID: </b><a href='account_order_overview.php?user_id={$userid}'>$userid</a></td>
 					</tr>
 				</thread>
 				<thread>

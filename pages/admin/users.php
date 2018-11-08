@@ -20,7 +20,8 @@ echo '<div class="container">
                 <th scope="col">First</th>
                 <th scope="col">Last</th>
                 <th scope="col">e-mail</th>
-                <th scope="col"></th>
+                <th scope="col">Show user</th>
+                <th scope="col">View orders</th>
               </tr>
             </thead>
             <tbody>';
@@ -34,6 +35,8 @@ foreach($result as $row) {
       <td>
         <a href='{$relative_path}/pages/admin/user.php?user_id={$row['id']}'>show user</a>
       </td>
+      <td>
+        <a href='{$relative_path}/pages/admin/account_order_overview.php?user_id={$row['id']}'>Orders</a>
     </tr>";
 }
 
