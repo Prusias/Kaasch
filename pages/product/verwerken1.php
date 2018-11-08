@@ -7,11 +7,7 @@
 
 
 <?php
-	$dbhost = "localhost"; 
-	$dbuser = "root"; 
-	$dbpass = ""; 
-	$dbname = "kaasch"; 
-	$db = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+	
 	
 //	Test of de verbinding werkt! 
 	if (mysqli_connect_errno()) {
@@ -20,16 +16,29 @@
 			" (" . mysqli_connect_errno() . ")"
 		);
 	} 	
-	
-$query = "INSERT INTO products(name, description, price, shelflife)
-VALUES'".$_POST["name"]."','".$_POST["description"]."','".$_POST["price"]."','".$_POST["shelflife"]."')";
-$result = mysqli_query($db, $query);
+$name = $_POST['name'];
+$description = $_POST['description'];
+$price = $_POST['price'];
+$shelflife = $_POST['shelflife'];
+$category = $_POST['category'];
+
+
+
+
+
+$query = "INSERT INTO 
+`products` (`name`, `description`, `price`, `shelflife`, `created_at`, `updated_at`, `category_id`) 
+VALUES('$name', '$description', $price, $shelflife, NOW(), NOW(), $category);";
+
+
+
+mysqli_query($mysqli, $query);
 echo("De volgende gegevens zijn ingevoerd:<br />");
-echo("Naam: <b> ". $_POST["name"]. "</b><br>");
-echo("Voorletters: <b>".$_POST["description"] . "</b><br>");
-echo("Postcode: <b> ". $_POST["price"]. "</b><br>");
-echo("Plaats: <b> ". $_POST["shelflife"]. "</b><br>");
-mysqli_close($db);
+echo("Name: <b> ". $_POST["name"]. "</b><br>");
+echo("Description: <b>".$_POST["description"] . "</b><br>");
+echo("Price: <b> ". $_POST["price"]. "</b><br>");
+echo("Shelflife: <b> ". $_POST["shelflife"]. "</b><br>");
+mysqli_close($mysqli);
 ?>
 
 <?php require_once(get_document_root() . "/includes/footer.php"); ?>

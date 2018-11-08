@@ -13,10 +13,10 @@
             <?php
 				$productid = $_GET["id"];
               
-				$a = "kaas".$productid.".jpg";
-				echo "<img src=\"$a\" alt=\"kaas\" height=\"600\" width=\"600\">";
 				
-				$query = "SELECT name, description, price, shelflife FROM products;";
+				echo "<img src=\"../../images/".$productid.".jpg\" alt=\"kaas\" height=\"600\" width=\"600\">";
+				
+				$query = "SELECT * FROM products WHERE id = $productid;";
 				$result = mysqli_query($mysqli, $query);
 				$row = mysqli_fetch_assoc($result)
 		

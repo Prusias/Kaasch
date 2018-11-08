@@ -6,7 +6,6 @@
 	require_once("../../document_root.php");
 	require_once(get_document_root() . "/includes/admin_page.php");
 
-
 ?>
 
 <?php
@@ -18,11 +17,8 @@
            <h2>Kaasch product</h2>
             <?php
 				$productid = $_GET["id"];
-              
-				$a = "kaas".$productid.".jpg";
-				echo "<img src=\"$a\" alt=\"kaas\" height=\"600\" width=\"600\">";
-				
-				$query = "SELECT * FROM products;";
+				echo "<img src=\"../../images/".$productid.".jpg\" alt=\"kaas\" height=\"600\" width=\"600\">";
+				$query = "SELECT * FROM products WHERE id = $productid;";
 				$result = mysqli_query($mysqli, $query);
 				$row = mysqli_fetch_assoc($result)
 		
@@ -74,7 +70,7 @@
 				</form>
 				</td>
 				<td>
-				<form method="post" action="product_add">
+				<form method="post" action="product_add.php">
 				<input name="product_id_add" type="text" class="d-none" value="{$row["id"]}">
 				<input name="return_url" type="text" class="d-none" value="">
 				<button type="submit" name="submit_add" class="btn btn-secondary"><i class="fa fa-plus-circle"></i></button>
