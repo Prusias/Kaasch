@@ -58,10 +58,6 @@
 									<div class="product-name">
 										<h3>{$row['name']}</h3>
 									</div>
-									<div class="product-description">
-										<h4>Description:</h4>
-										<p>{$row['description']}</p>
-									</div>
 									<div class="product-order">
 										<span>Price: &euro;{$row['price']}</span>
 										<form method="post" action="{$relative_root}/logic/add_product.php">
