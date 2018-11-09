@@ -32,7 +32,7 @@
 				<td><?php echo $row['name'] ?></td>
 				</tr>
 				<tr>
-				<td align='right'><b>Description:&nbsp;&nbsp;</b></td>
+				<td align='right' VALIGN=TOP><b>Description:&nbsp;&nbsp;</b></td>
 				<td><?php echo $row['description'] ?></td>
 				</tr>
 				<tr>
@@ -63,7 +63,7 @@
 				</tr>
 				<tr>
 				<td align='right'>
-				<form method="post" action="product_delete">
+				<form method="post" action="product_delete.php">
 				<input name="product_id_delete" type="text" class="d-none" value="{$row["id"]}">
 				<input name="return_url" type="text" class="d-none" value="">
 				<button type="submit" name="submit_delete" class="btn btn-secondary"><i class="fa fa-window-close"></i></button>
