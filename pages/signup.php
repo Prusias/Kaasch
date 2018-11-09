@@ -1,107 +1,38 @@
+	
 <?php
-
 	require_once("../document_root.php");
 
 	require_once(get_document_root() . "/includes/header.php");
 
 	get_header('kaasch', '');
-	//ession_start();
+	
 	require ('../includes/ddb_connect.php');
 
-	if (!($_SERVER["REQUEST_METHOD"] == "POST")){
-		echo <<<EOT
 
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								<div class="mx-auto">
-									<form action="signup.php" method="post">
-									<h2> Making a new account</h2>
-									All fields are mandatory
-									<div class="form-group">
-										<label for="first_name">First Name:</label>
-										<input type = "text" name = "first_name" pattern=".{2,}" required title="the first name must be at least two letters" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="last_name">Last Name:</label>
-										<input type = "text" name = "last_name" pattern=".{2,}"   required title="the last name must be at least two letters" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="email">Email address:</label>
-										<input type = "text" name = "mail" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="exampleFormControlSelect1">Example select</label>
-										<select name='gender' class="form-control" id="gender">
-											<option value='male'>male</option>
-											<option value='female'>female</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label for="tel_num">Telephone</label>
-										<input type="tel" name="tel_num" pattern=".{10,}"   required title="10 numbers minimum" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="street_name">Street Name</label>
-										<input type = "text" name = "street_name" pattern=".{3,}"   required title="3 characters minimum" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="house_number">House Number</label>
-										<input type = "text" name = "house_number" pattern=".{1,}"   required title="at least one number" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="Post_code">Postal Code</label>
-										<input type = "text" name = "Post_code" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="city">city</label>
-										<input type = "text" name = "city" pattern=".{2,}"   required title="the city name must be at least two letters" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="state">State</label>
-										<input type="text" name="state" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="country">Country</label>
-										<input type = "text" name = "country" pattern=".{2,}"   required title="the country name must be at least two letters" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="password">Password</label>
-										<input type = "password" name = "pwd" pattern=".{6,}"   required title="the password must be at least 6 characters" class="form-control">
-									</div>
-										<input type="submit" value="signup" class="btn btn-primary">
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-
-EOT;
-
-		}
-	else
-	{
+	if(isset($_POST['signup']))
+		{
 			$first_name = mysqli_real_escape_string($mysqli, $_POST["first_name"]);
 			$first_name = ucwords($first_name);
 			$last_name = mysqli_real_escape_string($mysqli, $_POST["last_name"]);
 			$last_name = ucwords($last_name);
-			$mail = mysqli_real_escape_string($mysqli, $_POST["mail"]);
-			$mail = strtolower($mail);
+			$mail = strtolower(mysqli_real_escape_string($mysqli, $_POST["mail"]));
 			$sql = "SELECT email_address FROM users WHERE email_address = '$mail'";
 			$result_mail = mysqli_query($mysqli, $sql);
-			if( !preg_match("/^[A-Za-z -]*$/", $first_name) || !preg_match("/^[A-Za-z -]*$/", $last_name))
+			if(!preg_match("/^[A-Za-z -]*$/", $first_name) || !preg_match("/^[A-Za-z -]*$/", $last_name))
 			{
-				header("Location: signup.php?message_code=8");
+				header("Location: signup_form.php?message_code=8");
+				exit;
 			}
 			if (!filter_var($mail, FILTER_VALIDATE_EMAIL))
 			{
-				header("Location: signup.php?message_code=6");
-			}elseif (mysqli_num_rows($result_mail) > 0 )
+				header("Location: signup_form.php?message_code=6");
+				exit;
+			}
+			if (mysqli_num_rows($result_mail) > 0 )
 			{
 
-				header("Location: signup.php?message_code=7");
+				header("Location: signup_form.php?message_code=7");
+				exit;
 			}
 			$gender = $_POST['gender'];
 			if($gender == 'male')
@@ -118,7 +49,8 @@ EOT;
 			$city = mysqli_real_escape_string($mysqli, $_POST['city']);
 			$postcode = mysqli_real_escape_string($mysqli, $_POST['Post_code']);
 				if(!preg_match('/^[1-9]{1}[0-9]{3}[A-Z]{2}$/', $postcode)) {
-				header("Location: signup.php?message_code=9");
+				header("Location: signup_form.php?message_code=9");
+				exit;
 			}
 			$state = mysqli_real_escape_string($mysqli, $_POST['state']);
 			$country = mysqli_real_escape_string($mysqli, $_POST['country']);
@@ -155,15 +87,12 @@ EOT;
 						}}
 						$index="../index.php";
 						$_SESSION['loggedin']=true;
-						echo header("Location: signup.php?message_code=5");
+						echo header("Location: login_form.php?message_code=5");
 						echo "<a href=".$index."?id=".$user_id."> Go to home page </a>";
 
 						}else	{
 							
-						header("Location: signup.php?message_code=4");
+						header("Location: signup_form.php?message_code=4");
 					}
 
-	}
-
- require_once(get_document_root() . "/includes/footer.php");
- ?>
+		}
