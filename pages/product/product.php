@@ -50,9 +50,9 @@
 				$relative_root = get_relative_root();
 				echo <<<EOT
 				
-				<form method="post" action="{$relative_root}/logic/add_product.php">
+				<form method="post" action="{$relative_root}/logic/shopping_cart/add_product.php">
 					<input name="product_id" type="text" class="d-none" value="{$productid}">
-					<input name="return_url" type="text" class="d-none" value="{$relative_root}/pages/product/product.php?id={$productid}">
+					<input name="return_url" type="text" class="d-none" value="/pages/product/product.php?id={$productid}">
 					<button type="submit" name="submit" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
 				</form>
 EOT;
@@ -65,7 +65,7 @@ EOT;
         </div>
     </div>
     <?php 
-	//require_once(get_document_root() . '/pages/product/reviews.php'); 
+	require_once(get_document_root() . '/pages/product/reviews/reviews.php'); 
 	?>
 </div>
 

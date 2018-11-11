@@ -1,10 +1,12 @@
 <?php
-	require_once("../../document_root.php");
+	require_once("../../../document_root.php");
 	require_once(get_document_root() . '/includes/ddb_connect.php');
 
 	require_once(get_document_root() . "/includes/header.php");
-    get_header('kaasch', 'kaasisbaas');
-    
+    get_header('kaasch', '');
+    if (!login_check()) {
+        header("Location: " . get_relative_root() . "/pages/product/product.php?id=" . $_GET["id"]);
+    }
 ?>
 
 <?php
@@ -24,9 +26,9 @@
                         }
                 ?>
             </h2>
-            <form method="post" action="add_review_action.php">
+            <form method="post" action="<?php echo get_relative_root();?>/logic/product/reviews/add_review.php">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" name="anonymous">
+                    <input class="form-check-input" type="checkbox" value="" name="is_anonymous">
                     <label class="form-check-label">
                         Place as Anonymous?
                     </label>
@@ -43,7 +45,7 @@
                 </div>
                 <div class="form-group">
                     <label>Review Text:</label>
-                    <textarea name="description" type="text-multiline" class="form-control" rows="5"></textarea>
+                    <textarea name="content" type="text-multiline" class="form-control" rows="5"></textarea>
                 </div>
                 <input name="product_id" type="text" class="d-none" value=<?php echo $product_id; ?>>
                 <input type="submit"  name="Submit" value="Save Review" class="btn btn-primary">

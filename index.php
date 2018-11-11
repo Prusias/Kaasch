@@ -46,20 +46,14 @@
 					if (mysqli_num_rows($result) > 0){
 						$relative_root = get_relative_root();
 						while($row = mysqli_fetch_assoc($result)) {
-							$path = "";
+							$productpath;
 							$relative_root = get_relative_root();
 							//echo $row['name'] . " | " . $row['description']. " | " . $row['price']. " | " . $row['shelflife'];
-							if (login_check()) {
-								  if ($_SESSION['is_admin']) {
-									$path = " <a href='{$relative_root}/pages/product/product_admin.php?id={$row["id"]}'>view</a>";
-								  }
-								  else{
-									  $path = " <a href='{$relative_root}/pages/product/product.php?id={$row["id"]}'>view</a>";
-								  }
-									  
-								} else {
-									$path = " <a href='{$relative_root}/pages/product/product.php?id={$row["id"]}'>view</a>";
-								}
+							if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
+								$productpath = "{$relative_root}/pages/product/product_admin.php?id={$row["id"]}";
+							} else {
+								$productpath = " {$relative_root}/pages/product/product.php?id={$row["id"]}";
+							}
 							echo <<<EOT
 							<div class="col-4">
 								<div class="product">
@@ -71,12 +65,12 @@
 									</div>
 									<div class="product-order">
 										<span>Price: &euro;{$row['price']}</span>
-										<form method="post" action="{$relative_root}/logic/add_product.php">
+										<form method="post" action="{$relative_root}/logic/shopping_cart/add_product.php">
 											<input name="product_id" type="text" class="d-none" value="{$row["id"]}">
 											<input name="return_url" type="text" class="d-none" value="">
 											<button type="submit" name="submit" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
 										</form>
-										{$path}
+										<a class='btn btn-secondary' href='{$productpath}'>View</a>
 									</div>
 								</div>
 							</div>
