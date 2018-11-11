@@ -65,7 +65,7 @@ EOT;
         </div>
     </div>
     <?php 
-	//require_once(get_document_root() . '/pages/product/reviews.php'); 
+	require_once(get_document_root() . '/pages/product/reviews/reviews.php'); 
 	?>
 </div>
 
