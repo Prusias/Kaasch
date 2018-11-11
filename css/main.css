@@ -23,7 +23,9 @@ html {
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
-
+#mainNav .navbar-nav {
+  align-items: baseline;
+}
 #mainNav .navbar-brand {
   font-weight: 700;
   text-transform: uppercase;

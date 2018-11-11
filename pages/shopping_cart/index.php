@@ -4,18 +4,18 @@
 
 	require_once(get_document_root() . "/includes/header.php");
     get_header('kaasch', 'kaasisbaas');
-    
+    session_start();
     //echo session_id();
 ?>
 
 <?php
-    $fakedata = array(
-        array(1, 4),
-        array(17, 1),
-        array(16, 1)
-    );
-    $_SESSION["shoppingcart"] = $fakedata;  
-
+    //$fakedata = array(
+    //    array(1, 4),
+    //    array(17, 1),
+    //    array(16, 1)
+    //);
+    //$_SESSION["shoppingcart"] = array(array(1,4));
+    //$_SESSION["shoppingcart"] = $fakedata;  
     $total = 0;
     $itemcount = 0;
     $discount = 15;
@@ -163,13 +163,14 @@ EOT;
         $shoppingcart = $_SESSION["shoppingcart"];
         $newshoppingcart = $shoppingcart;
         for($i = 0; $i < sizeof($shoppingcart); $i++ ){
-            if($shoppingcart[$i][0] == $_POST['product_id']);
-            if ($shoppingcart[$i][1] == 1) {
-                unset($newshoppingcart[$i]);
-                $_SESSION["shoppingcart"] = array_values($newshoppingcart);
-            } else {
-                $newshoppingcart[$i][1] = $shoppingcart[$i][1] - 1;
-                $_SESSION["shoppingcart"] = $newshoppingcart;
+            if($shoppingcart[$i][0] == $_POST['product_id']) {
+                if ($shoppingcart[$i][1] == 1) {
+                    unset($newshoppingcart[$i]);
+                    $_SESSION["shoppingcart"] = array_values($newshoppingcart);
+                } else {
+                    $newshoppingcart[$i][1] = $shoppingcart[$i][1] - 1;
+                    $_SESSION["shoppingcart"] = $newshoppingcart;
+                }
             }
         }
     }
