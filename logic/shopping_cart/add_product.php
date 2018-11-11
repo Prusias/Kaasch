@@ -1,5 +1,5 @@
 <?php
-    require_once("../document_root.php");
+    require_once("../../document_root.php");
     require_once(get_document_root() . '/includes/ddb_connect.php');
     session_start();
 
@@ -30,12 +30,12 @@
             $_SESSION["shoppingcart"] = $shoppingcart;
 
             if (isset($_POST["return_url"])) {
-                if ("return_url" != "") {
-                   header("Location: " . get_relative_root() . $_POST["return_url"]);
+                if ($_POST["return_url"] != "") {
+                    header("Location: " . get_relative_root() . $_POST["return_url"]);
+                    exit;
                 } 
             } 
            header("Location: " . get_relative_root());
-            
         }
     }
 ?>

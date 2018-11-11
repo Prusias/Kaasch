@@ -145,7 +145,7 @@ EOT;
 if (login_check()) {
   if ($_SESSION['is_admin']) {
     echo "<li class='nav-item'>
-      <a class='nav-link js-scroll-trigger' href='{$relative_path}/pages/admin/admin.php'>admin pannel</a>
+      <a class='nav-link js-scroll-trigger' href='{$relative_path}/pages/admin/admin.php'>admin panel</a>
     </li>";
   }
   echo "<li class='nav-item'>

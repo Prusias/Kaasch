@@ -1,24 +1,12 @@
 <?php
-	require_once("../document_root.php");
+	require_once("../../document_root.php");
 	require_once(get_document_root() . '/includes/ddb_connect.php');
 
 	require_once(get_document_root() . "/includes/header.php");
-    get_header('kaasch', 'kaasisbaas');
-    
-    //echo session_id();
-?>
-
-<?php
-    $fakedata = array(
-        array(1, 4),
-        array(17, 1),
-        array(16, 1)
-    );
-    $_SESSION["shoppingcart"] = $fakedata;  
-
-    $total = 0;
-    $itemcount = 0;
-    $discount = 15;
+    get_header('kaasch', '');
+    if (!login_check()) {
+        header("Location: " . get_relative_root() . "/pages/shopping_cart");
+    }
 ?>
 
 <div class="container">
@@ -26,7 +14,7 @@
         <div class="col-12">
            <h2>Finalize order</h2>
 
-            <form method="post" action="finalize_order_action.php">
+            <form method="post" action="<?php echo get_relative_root(); ?>/logic/shopping_cart/finalize_order.php">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" name="useDefault">
                     <label class="form-check-label">
@@ -62,8 +50,5 @@
         </div>
     </div>
 </div>
-
-
-
 
 <?php require_once(get_document_root() . "/includes/footer.php"); ?>

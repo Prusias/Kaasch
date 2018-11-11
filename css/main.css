@@ -164,16 +164,8 @@ html {
 /*#endregion*/
 
 /*#region Shopping Cart*/
-.shopping-cart .borders {
-  border: 1px solid black;
-
-}
 .shopping-cart table {
   width: 100%;
-}
-.shopping-cart td {
-  padding: 0.2rem;
-  text-align: left;
 }
 
 /*#endregion*/
