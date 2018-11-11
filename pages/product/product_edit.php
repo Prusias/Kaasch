@@ -13,58 +13,49 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-           <h2>Kaasch product</h2>
+           <h2>Kaasch edit</h2>
             <?php
-				$productid = $_GET["id"];
-              
-				$a = "kaas".$productid.".jpg";
-				echo "<img src=\"$a\" alt=\"kaas\" height=\"600\" width=\"600\">";
-				
-				$query = "SELECT * FROM products;";
+			
+				$productid = $_POST["id"];
+				echo "<img src=\"../../images/".$productid.".jpg\" alt=\"kaas\" height=\"300\" width=\"300\">";
+
+				$query = "SELECT * FROM products WHERE id = $productid;";
 				$result = mysqli_query($mysqli, $query);
-				$row = mysqli_fetch_assoc($result)
-		
-				?>
-						
-				 
-				<table style="display: inline-block;">
-				<col width = 80><col width = 150>
-				<tr>
-				<td align='right'><b>Name:&nbsp;&nbsp;</b></td>
-				<td><?php echo $row['name'] ?></td>
-				</tr>
-				<tr>
-				<td align='right'><b>Description:&nbsp;&nbsp;</b></td>
-				<td><?php echo $row['description'] ?></td>
-				</tr>
-				<tr>
-				<td align='right' VALIGN='TOP'><b>Price:&nbsp;&nbsp;</b></td>
-				<td><?php echo "€".$row['price']." euro a 500g "; ?></td>
-				</tr>
-				<tr>
-				<td align='right'><b>Shelflife:&nbsp;&nbsp;</b></td>
-				<td><?php echo $row['shelflife']." year"; ?></td>
-				</tr>
-				<tr>
-				<td>&nbsp;</td><td>&nbsp;</td>
-				</tr>
-				<tr>
-				<td align='right'>
-				<form method="post" action="!KOOP PAGINA!">
-				<input name="product_id" type="text" class="d-none" value="{$row["id"]}">
-				<input name="return_url" type="text" class="d-none" value="">
-				<button type="submit" name="submit" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
-				</td>
-				<td>
-				<form method="post" action="PAGINA VOOR ADMIN">
-				<input name="product_id_admin" type="text" class="d-none" value="{$row["id"]}">
-				<input name="return_url" type="text" class="d-none" value="">
-				<button type="submit_admin" name="submit" class="btn btn-secondary"><i class="fa fa-wrench"></i></button>
-				</form>
-				</td>
-				</tr>
-				</table>
+				if (mysqli_num_rows($result) > 0) {
+					while($row = mysqli_fetch_assoc($result)) {
+						$name = $row["name"];
+						$description = $row["description"];
+						$price = $row["price"];
+						$shelflife = $row["shelflife"];
+					}
+				}
 				
+				if (isset($_POST["confirmation"])){
+					$name = $_POST["name"];
+					$description = $_POST["description"];
+					$price = $_POST["price"];
+					$shelflife = $_POST["shelflife"];
+					$query="UPDATE products SET name='$name', description='$description', price='$price', shelflife='$shelflife' WHERE id = $productid;";
+					$result = mysqli_query($mysqli, $query);
+				}
+			?>
+				<h3>Edit:</h3>
+				<form action="<?php echo($_SERVER["PHP_SELF"]);?>" method="post">
+				<input type="hidden" name="confirmation" value="1">
+				<input type="hidden" name="id" type="text" value="<?php echo "$productid" ?>">
+				
+				<table>
+				<tr><td>Name:</td><td><input type="text" name="name" value="<?php echo($name);?>"></td></tr>
+				<tr><td>Description: </td><td><input type="text" name="description" value="<?php echo($description);?>"></td></tr>
+				<tr><td>Price:</td><td> <input type="text" name="price" value="<?php echo($price);?>"></td></tr>
+				<tr><td>Shelflife:</td><td> <input type="text" name="shelflife" value="<?php echo($shelflife);?>"></td></tr>
+				</table>
+		
+				<hr>
+				<input type ="Submit" value="Yes, edit">
+				<input type="Button" value="Back" onclick="javascript:history.back();">
+				</form>
+
 
         </div>
     </div>

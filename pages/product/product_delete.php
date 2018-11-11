@@ -3,8 +3,6 @@
 	require_once(get_document_root() . '/includes/ddb_connect.php');
 	require_once(get_document_root() . "/includes/header.php");
     get_header('kaasch', 'kaasisbaas');
-
-
 ?>
 
 <?php
@@ -15,24 +13,59 @@
         <div class="col-12">
            <h2>Kaas delete</h2>
 		  <?php
-				$query = "SELECT * FROM klant WHERE klantnr='" .$_GET["klantnr"] ."'";
-				$result = mysqli_query($db, $query);
-				if (mysqli_num_rows($result) > 0) {
-				// output data of each row
-				while($row = mysqli_fetch_assoc($result)) {
-				echo "<h3>Verwijder dit record?</h3>" . "<p />";
-				echo "<table>";
-				echo "<tr><td>Klantnummer:</td><td> " . $row["klantnr"]. "</td></tr> ";
-				echo "<tr><td>Naam:</td><td> ".$row["naam"]. "</td></tr> " ;
-				echo "<tr><td>Voorletters:</td><td> ".$row["voorletters"]. "</td></tr> " ;
-				echo "<tr><td>Straatnaam:</td><td> ". $row["straatnaam"] ."</td></tr>";
-				echo "<tr><td>Huisnummer:</td><td> ". $row["huisnummer"]
-				."</td></tr>";
-				echo "<tr><td>Postcode:</td><td> ". $row["postcode"] ."</td></tr>";
-				echo "<tr><td>Woonplaats:</td><td> ". $row["woonplaats"] ."</td></tr>";
-				echo "</table><p><hr>"; }
-
+            
+				$productid = $_GET["id"];
+				echo "<img src=\"../../images/".$productid.".jpg\" alt=\"kaas\" height=\"600\" width=\"600\">";
+				$query = "SELECT * FROM products WHERE id = $productid;";
+				$result = mysqli_query($mysqli, $query);
+				$row = mysqli_fetch_assoc($result)
 				?>
+						
+				 
+				<table style="display: inline-block;">
+				<col width = 80><col width = 150>
+				<tr>
+				<td align='right'><b> DELETE:&nbsp;&nbsp;</b></td>
+				</tr>
+				<tr>
+				<td align='right'><b>Name:&nbsp;&nbsp;</b></td>
+				<td><?php echo $row['name'] ?></td>
+				</tr>
+				<tr>
+				<td align='right' VALIGN=TOP><b>Description:&nbsp;&nbsp;</b></td>
+				<td><?php echo $row['description'] ?></td>
+				</tr>
+				<tr>
+				<td align='right' VALIGN='TOP'><b>Price:&nbsp;&nbsp;</b></td>
+				<td><?php echo "€".$row['price']." euro a 500g "; ?></td>
+				</tr>
+				<tr>
+				<td align='right'><b>Shelflife:&nbsp;&nbsp;</b></td>
+				<td><?php echo $row['shelflife']." year"; ?></td>
+				</tr>
+				<tr>
+				<td align='right'>
+				<form>
+				<input type="Button" value="Back" onclick="window.location.href='http://localhost/kaasch/pages/product/product_admin.php?id=<?php echo $productid ?>'">
+				</form>
+				</td>
+				<td>
+				<form action="<?php echo($_SERVER["PHP_SELF"]);?>" method="get">
+				<input type="hidden" name="confirmation" value="1">
+				<input name="id" type="text" class="d-none" value="<?php echo "$productid" ?>">
+				<input type="Submit" value="Yes, delete">
+				</form>
+				</td>
+				</tr>
+				</table>
+				
+				<?php
+				if (isset($_GET["confirmation"])){
+					$query = "DELETE FROM products WHERE id = $productid;";
+					$result = mysqli_query($mysqli, $query) or die('(products_has_orders)');
+				}
+				?>
+			
 
         </div>
     </div>

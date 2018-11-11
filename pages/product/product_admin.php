@@ -3,7 +3,6 @@
 	require_once(get_document_root() . '/includes/ddb_connect.php');
 	require_once(get_document_root() . "/includes/header.php");
     get_header('kaasch', 'kaasisbaas');
-	require_once("../../document_root.php");
 	require_once(get_document_root() . "/includes/admin_page.php");
 
 ?>
@@ -21,7 +20,6 @@
 				$query = "SELECT * FROM products WHERE id = $productid;";
 				$result = mysqli_query($mysqli, $query);
 				$row = mysqli_fetch_assoc($result)
-		
 				?>
 						
 				 
@@ -49,31 +47,28 @@
 				<tr>
 				<td align='right'>
 				<form method="post" action="!KOOP PAGINA!">
-				<input name="product_id" type="text" class="d-none" value="{$row["id"]}">
-				<input name="return_url" type="text" class="d-none" value="">
-				<button type="submit" name="submit" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
+				<input name="product_id" type="text" class="d-none" value="waarde KOOP PAGINA">
+				<button type="submit" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
+				</form>
 				</td>
 				<td>
-				<form method="get" action="product_edit.php">
-				<input name="product_id_edit" type="text" class="d-none" value="">
-				<input name="return_url" type="text" class="d-none" value="">
-				<button type="submit" name="submit_edit" class="btn btn-secondary"><i class="fa fa-wrench"></i></button>
+				<form method="POST" action="product_edit.php">
+				<input name="id" type="text" class="d-none" value="<?php echo "$productid" ?>">
+				<button type="submit" class="btn btn-secondary"><i class="fa fa-wrench"></i></button>
 				</form>
 				</td>
 				</tr>
 				<tr>
 				<td align='right'>
-				<form method="post" action="product_delete.php">
-				<input name="product_id_delete" type="text" class="d-none" value="{$row["id"]}">
-				<input name="return_url" type="text" class="d-none" value="">
-				<button type="submit" name="submit_delete" class="btn btn-secondary"><i class="fa fa-window-close"></i></button>
+				<form method="get" action="product_delete.php">
+				<input name="id" type="text" class="d-none" value="<?php echo "$productid" ?>">
+				<button type="submit" class="btn btn-secondary"><i class="fa fa-window-close"></i></button>
 				</form>
 				</td>
 				<td>
 				<form method="post" action="product_add.php">
-				<input name="product_id_add" type="text" class="d-none" value="{$row["id"]}">
-				<input name="return_url" type="text" class="d-none" value="">
-				<button type="submit" name="submit_add" class="btn btn-secondary"><i class="fa fa-plus-circle"></i></button>
+				<input name="product_id_add" type="text" class="d-none">
+				<button type="submit" class="btn btn-secondary"><i class="fa fa-plus-circle"></i></button>
 				</form>
 				</td>
 				</tr>
@@ -83,7 +78,7 @@
         </div>
     </div>
     <?php 
-	//require_once(get_document_root() . '/pages/product/reviews.php'); 
+	//require_once(get_document_root() . '/pages/product/reviews.php'); 						
 	?>
 </div>
 

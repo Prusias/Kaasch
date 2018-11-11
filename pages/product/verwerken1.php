@@ -7,24 +7,13 @@
 
 
 <?php
-	
-	
-//	Test of de verbinding werkt! 
-	if (mysqli_connect_errno()) {
-		die("De verbinding met de database is mislukt: " .
-			mysqli_connect_error() .
-			" (" . mysqli_connect_errno() . ")"
-		);
-	} 	
+
 $name = $_POST['name'];
 $description = $_POST['description'];
 $price = $_POST['price'];
 $shelflife = $_POST['shelflife'];
 $category = $_POST['category'];
-
-
-
-
+	
 
 $query = "INSERT INTO 
 `products` (`name`, `description`, `price`, `shelflife`, `created_at`, `updated_at`, `category_id`) 
@@ -39,6 +28,14 @@ echo("Description: <b>".$_POST["description"] . "</b><br>");
 echo("Price: <b> ". $_POST["price"]. "</b><br>");
 echo("Shelflife: <b> ". $_POST["shelflife"]. "</b><br>");
 mysqli_close($mysqli);
+
+
+
+
 ?>
+<form>
+<input type="Button" value="Homepage" onclick="window.location.href='http://localhost/kaasch/'">
+</form>
+
 
 <?php require_once(get_document_root() . "/includes/footer.php"); ?>
