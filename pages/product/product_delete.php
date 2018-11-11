@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-           <h2>Kaas delete</h2>
+           <h2>Kaasch delete</h2>
 		  <?php
             
 				$productid = $_GET["id"];
@@ -43,17 +43,17 @@
 				<td align='right'><b>Shelflife:&nbsp;&nbsp;</b></td>
 				<td><?php echo $row['shelflife']." year"; ?></td>
 				</tr>
+				<tr><td>&nbsp;&nbsp;</td></tr>
 				<tr>
 				<td align='right'>
-				<form>
-				<input type="Button" value="Back" onclick="window.location.href='http://localhost/kaasch/pages/product/product_admin.php?id=<?php echo $productid ?>'">
-				</form>
-				</td>
-				<td>
 				<form action="<?php echo($_SERVER["PHP_SELF"]);?>" method="get">
 				<input type="hidden" name="confirmation" value="1">
 				<input name="id" type="text" class="d-none" value="<?php echo "$productid" ?>">
-				<input type="Submit" value="Yes, delete">
+				<input type="Submit" class="btn btn-primary" value="Yes, delete">
+				</form>
+				</td>
+				<td>
+				<input type="Button" value="Back" class="btn btn-primary" onclick="window.location.href='http://localhost/kaasch/pages/product/product_admin.php?id=<?php echo $productid ?>'">
 				</form>
 				</td>
 				</tr>
@@ -69,9 +69,6 @@
 
         </div>
     </div>
-    <?php 
-	//require_once(get_document_root() . '/pages/product/reviews.php'); 
-	?>
 </div>
 
 

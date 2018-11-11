@@ -46,8 +46,8 @@
 				</tr>
 				<tr>
 				<td align='right'>
-				<form method="post" action="!KOOP PAGINA!">
-				<input name="product_id" type="text" class="d-none" value="waarde KOOP PAGINA">
+				<form method="post" action="http://localhost/kaasch/pages/shopping_cart/">
+				<input name="id" type="text" class="d-none" value="<?php echo "$productid" ?>">
 				<button type="submit" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
 				</form>
 				</td>
@@ -78,7 +78,7 @@
         </div>
     </div>
     <?php 
-	//require_once(get_document_root() . '/pages/product/reviews.php'); 						
+	require_once(get_document_root() . '/pages/product/reviews/reviews.php'); 
 	?>
 </div>
 

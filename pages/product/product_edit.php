@@ -45,23 +45,20 @@
 				<input type="hidden" name="id" type="text" value="<?php echo "$productid" ?>">
 				
 				<table>
-				<tr><td>Name:</td><td><input type="text" name="name" value="<?php echo($name);?>"></td></tr>
-				<tr><td>Description: </td><td><input type="text" name="description" value="<?php echo($description);?>"></td></tr>
-				<tr><td>Price:</td><td> <input type="text" name="price" value="<?php echo($price);?>"></td></tr>
-				<tr><td>Shelflife:</td><td> <input type="text" name="shelflife" value="<?php echo($shelflife);?>"></td></tr>
+				<tr><td>Name:</td><td><input type="text" name="name" class="form-control" value="<?php echo($name);?>"></td></tr>
+				<tr><td>Description: </td><td><input type="text" name="description" class="form-control" value="<?php echo($description);?>"></td></tr>
+				<tr><td>Price:</td><td> <input type="text" name="price" class="form-control" value="<?php echo($price);?>"></td></tr>
+				<tr><td>Shelflife:</td><td> <input type="text" name="shelflife" class="form-control" value="<?php echo($shelflife);?>"></td></tr>
 				</table>
 		
 				<hr>
-				<input type ="Submit" value="Yes, edit">
-				<input type="Button" value="Back" onclick="javascript:history.back();">
+				<input type ="Submit" value="Yes, edit" class="btn btn-primary">
+				<input type="Button" value="Back" class="btn btn-primary" onclick="javascript:history.back();">
 				</form>
 
 
         </div>
     </div>
-    <?php 
-	//require_once(get_document_root() . '/pages/product/reviews.php'); 
-	?>
 </div>
 
 

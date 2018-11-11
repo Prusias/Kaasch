@@ -26,7 +26,8 @@ echo("De volgende gegevens zijn ingevoerd:<br />");
 echo("Name: <b> ". $_POST["name"]. "</b><br>");
 echo("Description: <b>".$_POST["description"] . "</b><br>");
 echo("Price: <b> ". $_POST["price"]. "</b><br>");
-echo("Shelflife: <b> ". $_POST["shelflife"]. "</b><br>");
+echo("Shelflife: <b> ". $_POST["shelflife"]. "</b><br></b><br>");
+echo("(Add the image in: c:/xampp/htdocs/kaasch/images)</b><br>");
 mysqli_close($mysqli);
 
 
@@ -34,7 +35,8 @@ mysqli_close($mysqli);
 
 ?>
 <form>
-<input type="Button" value="Homepage" onclick="window.location.href='http://localhost/kaasch/'">
+<input type="Button" value="Homepage" class="btn btn-primary" onclick="window.location.href='http://localhost/kaasch/'">
+<input type="Button" value="Back" class="btn btn-primary" onclick="window.location.href='http://localhost/kaasch/pages/product/product_add.php'">
 </form>
 
 
