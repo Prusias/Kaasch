@@ -3,7 +3,7 @@
 	require_once(get_document_root() . '/includes/ddb_connect.php');
 	require_once(get_document_root() . "/includes/header.php");
     get_header('kaasch', 'kaasisbaas');
-	require_once(get_document_root() . "/includes/admin_page.php");
+	// require_once(get_document_root() . "/includes/admin_page.php");
 
 ?>
 
@@ -21,8 +21,8 @@
 				$result = mysqli_query($mysqli, $query);
 				$row = mysqli_fetch_assoc($result)
 				?>
-						
-				 
+
+
 				<table style="display: inline-block;">
 				<col width = 80><col width = 150>
 				<tr>
@@ -74,12 +74,12 @@
 				</td>
 				</tr>
 				</table>
-				
+
 
         </div>
     </div>
-    <?php 
-	require_once(get_document_root() . '/pages/product/reviews/reviews.php'); 
+    <?php
+	require_once(get_document_root() . '/pages/product/reviews/reviews.php');
 	?>
 </div>
 

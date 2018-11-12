@@ -54,7 +54,7 @@ if (isset($_GET['message_code'])) {
       break;
     case 3:
       echo '<div class="alert alert-info">';
-      echo '<strong>oops!</strong> the combination of email and email and password isn\'t correct.';
+      echo '<strong>oops!</strong> the combination of email and email and password is incorrect.';
       break;
     case 4:
       echo '<div class="alert alert-danger">';
@@ -87,6 +87,10 @@ if (isset($_GET['message_code'])) {
 	case 11:
       echo"<div class='alert alert-success'>";
       echo '<strong>Success!</strong> Your password has ben changed successfully.';
+      break;
+  case 12:
+      echo"<div class='alert alert-success'>";
+      echo '<strong>Success!</strong> You have edited the order.';
       break;
   }
  echo "</div>";
@@ -131,7 +135,7 @@ if (isset($_SESSION["shoppingcart"])) {
 echo <<<EOT
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{$relative_path}/pages/shopping_cart">
-              Cart 
+              Cart
               <span class="fa-layers fa-fw fa-2x" data-fa-transform="down-2">
                 <i class="fas fa-shopping-cart" data-fa-transform="shrink-4 down-3"></i>
 EOT;
