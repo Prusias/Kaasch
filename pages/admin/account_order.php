@@ -9,7 +9,6 @@
 	$orderid = $_GET['orderid'];
 if($_SESSION['is_admin']){
 		$db = $mysqli;
-
 		$sql = (
 			"SELECT `users_id`, o.`id`, `date`, s.`description` AS `statusdescription`, `first_name`, `last_name`, p.`name` AS `productname`, `email_address`,
 				`streetname`, `house_number`, `city`, `postal_code`, `country`, pm.`name` AS `paymentmethodname`, `amount`, `price`*`amount` AS `pricesum`
@@ -160,9 +159,9 @@ if($_SESSION['is_admin']){
 	<input class='btn btn-primary' type='submit' name='edit' value='Edit order'>
 	</form>
 	");
-
+}
 else {
-	echo "This record is locked."
+	echo "This record is locked.";
 }
 ?>
   <?php require_once(get_document_root() . "/includes/footer.php"); ?>
