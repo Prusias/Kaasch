@@ -12,24 +12,37 @@
 					
 
 					<form action="<?php echo($_SERVER["PHP_SELF"]);?>" method="get">
-						<select name="orderby" class="form-control">
-						<option value="ORDER BY created_at DESC;">Upload date</option>
-						<option value="ORDER BY price DESC;">Price low - high</option>
-						<option value="ORDER BY price ASC">Price high - low</option>
-						<option value="ORDER BY name ASC">Title A - Z</option>
-						<option value="ORDER BY name DESC">Title Z - A</option>
+						<select name="Order" class="form-control">
+						<option value="priceDESC;">Price low - high</option>
+						<option value="priceASC">Price high - low</option>
+						<option value="nameASC">Title A - Z</option>
+						<option value="nameDESC">Title Z - A</option>
+						<option value="createdDESC">Upload date</option>
 						</select><br>
-						<input type="submit" value = "Order" class="btn btn-primary">
+						<input type="submit" class="btn btn-primary">
 						</form>
 					</div>
 					<?php
-					if(!isset($_GET["confirmation"])){
-						$result = $mysqli->query("SELECT * FROM products ORDER BY created_at DESC;");
+					if(isset($_GET["Order"])){
+						if($_GET["Order"] == "nameDESC"){
+							$result = $mysqli->query("SELECT * FROM products ORDER BY price ACS;");
+						}
+						elseif($_GET["Order"] == "priceASC"){
+							$result = $mysqli->query("SELECT * FROM products ORDER BY price DESC;");
+						}
+						elseif($_GET["Order"] == "nameASC"){
+							$result = $mysqli->query("SELECT * FROM products ORDER BY name ACS;");
+						}
+						elseif($_GET["Order"] == "nameDESC"){
+							$result = $mysqli->query("SELECT * FROM products ORDER BY name DESC;");
+						}
+						else{
+							$result = $mysqli->query("SELECT * FROM products ORDER BY created_at DESC;");
+						}
 					}
 					else{
-						$result = $mysqli->query("SELECT * FROM products $orderby");
-					}
-					
+							$result = $mysqli->query("SELECT * FROM products ORDER BY created_at DESC;");
+						}
 					if (mysqli_num_rows($result) > 0){
 						$relative_root = get_relative_root();
 						while($row = mysqli_fetch_assoc($result)) {

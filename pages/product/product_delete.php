@@ -57,16 +57,17 @@
 				</form>
 				</td>
 				</tr>
-				</table>
-				
+				<tr><td>
 				<?php
 				if (isset($_GET["confirmation"])){
 					$query = "DELETE FROM products WHERE id = $productid;";
 					$result = mysqli_query($mysqli, $query) or die('(products_has_orders)');
+					Echo "Product has been deleted.";
 				}
 				?>
-			
-
+				</td>
+				</tr>
+				</table>
         </div>
     </div>
 </div>
