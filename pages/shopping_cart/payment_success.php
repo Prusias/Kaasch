@@ -10,12 +10,6 @@
 	$db = $mysqli;
   $homepage = "../../index.php";
   $sql = (
-    "UPDATE `orders`
-    SET `paymentmethods_id` = 2
-    WHERE `id` = $orderid;"
-  );
-  mysqli_query($db, $sql);
-  $sql = (
     "SELECT `name`
     FROM `paymentmethods` p
       JOIN `orders` o ON `paymentmethods_id` = p.`id`

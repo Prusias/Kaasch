@@ -34,54 +34,54 @@ echo <<<EOT
 
           <form action="update_user.php?user_id={$user_id}&addresses_id={$row['addresses_id']}" method="POST">
             <div class="form-group">
-              <label for="first_name">first name</label>
+              <label for="first_name">First Name</label>
               <input name="first_name" type="text" class="form-control" id="fist_name" value="{$row['first_name']}">
             </div>
             <div class="form-group">
-              <label for="last_name">Last name</label>
+              <label for="last_name">Last Name</label>
               <input name="last_name" type="text" class="form-control" id="last_name" value="{$row['last_name']}">
             </div>
             <div class="form-group">
-              <label for="email_address">Email address</label>
+              <label for="email_address">Email Address</label>
               <input name="email_address" type="email" class="form-control" id="email_address" value="{$row['email_address']}" >
             </div>
             <div class="form-group">
-              <label for="telephone_number">telephone number</label>
+              <label for="telephone_number">Telephone Number</label>
               <input name="telephone_number" type="text" class="form-control" id="telephone_number" value="{$row['telephone_number']}">
             </div>
             <div class="form-check">
               <input name="is_admin" type="checkbox" {$is_admin} class="form-check-input" id="is_admin">
-              <label class="form-check-label" for="is_admin">is admin</label>
+              <label class="form-check-label" for="is_admin">Admin</label>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1">gender</label>
+              <label for="exampleFormControlSelect1">Gender</label>
               <select name="gender" class="form-control" id="gender">
-                <option {$male_select} value='1'>male</option>
-                <option {$female_select} value='0'>female</option>
+                <option {$male_select} value='1'>Male</option>
+                <option {$female_select} value='0'>Female</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="streetname">streetname</label>
+              <label for="streetname">Street</label>
               <input name="streetname" type="text" class="form-control" id="streetname" value="{$row['streetname']}">
             </div>
             <div class="form-group">
-              <label for="house_number">house number</label>
+              <label for="house_number">House Number</label>
               <input name="house_number" type="text" class="form-control" id="house_number" value="{$row['house_number']}">
             </div>
             <div class="form-group">
-              <label for="postal_code">postal code</label>
+              <label for="postal_code">Postal Code</label>
               <input name="postal_code" type="text" class="form-control" id="postal_code" value="{$row['postal_code']}">
             </div>
             <div class="form-group">
-              <label for="telephone_number">stater</label>
+              <label for="telephone_number">State</label>
               <input name="state" type="text" class="form-control" id="state" value="{$row['state']}">
             </div>
             <div class="form-group">
-              <label for="city">city</label>
+              <label for="city">City</label>
               <input name="city" type="text" class="form-control" id="city" value="{$row['city']}">
             </div>
             <div class="form-group">
-              <label for="country">country</label>
+              <label for="country">Country</label>
               <input name="country" type="text" class="form-control" id="country" value="{$row['country']}">
             </div>
             <div class="form-group">
