@@ -7,7 +7,7 @@
 	get_header('kaasch', '');
 
 	session_start();
-	$id=$_SESSION['id'];
+	$id=$_SESSION['user_id'];
 	
 	
 ?>
@@ -26,44 +26,44 @@
 
 
 <?php
-function paid($paid)
-{
-	if($paid == '1')
+	function paid($paid)
 	{
-		return "Yes";
-	}else{
-		return "No";
+		if($paid == '1')
+		{
+			return "Yes";
+		}else{
+			return "No";
+		}
 	}
-}
-$sql = ("SELECT o.`id` AS `orderid`, `date`, `name`, `is_paid`
-FROM `orders` o
-	JOIN `paymentmethods` pm ON o.`paymentmethods_id` = pm.`id`
-WHERE `users_id`=$id
-ORDER BY o.`id`;");
-$result = mysqli_query($mysqli, $sql);
-if (mysqli_num_rows($result) > 0) {
+	$sql = ("SELECT o.`id` AS `orderid`, `date`, `name`, `is_paid`
+			FROM `orders` o
+			JOIN `paymentmethods` pm ON o.`paymentmethods_id` = pm.`id`
+			WHERE `users_id`=$id
+			ORDER BY o.`id`;");
+	$result = mysqli_query($mysqli, $sql);
+	if (mysqli_num_rows($result) > 0) {
 
-    while($row = mysqli_fetch_assoc($result)) {
+		while($row = mysqli_fetch_assoc($result)) {
 
-	echo "<tbody>
-    <tr>
-      <th scope='row'>" . $row['orderid'] . "</th>
-      <td>" . $row['date'] . "</td>
-      <td>" . $row['name'] ."</td>
-      <td>" . paid($row['is_paid']) . "</td>
-	  <td> <a href=\"order_x.php?order=".$row['orderid']."\">View </a>
-    </tr>
+		echo "<tbody>
+		<tr>
+		  <th scope='row'>" . $row['orderid'] . "</th>
+		  <td>" . $row['date'] . "</td>
+		  <td>" . $row['name'] ."</td>
+		  <td>" . paid($row['is_paid']) . "</td>
+		  <td> <a href=\"order_x.php?order=".$row['orderid']."\">View </a>
+		</tr>
 
-  </tbody>";
+	  </tbody>";
 
-	  }
-	echo "</table>";
+		  }
+		echo "</table>";
 
 
-} 
-	else {
-    echo "<center><th scope='row'>No records found</th></center>";
-}
+	} 
+		else {
+		echo "<center><th scope='row'>No records found</th></center>";
+	}
 
 ?>
 <?php require_once(get_document_root() . "/includes/footer.php"); ?>
