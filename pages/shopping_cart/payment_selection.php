@@ -20,7 +20,7 @@
     		WHERE `id` = $orderid;"
 			);
 			mysqli_query($db, $sql);
-			// header("location: payment_success.php?orderid={$_GET['orderid']}");
+			header("location: payment_success.php?orderid={$_GET['orderid']}");
 		}
 		$sql = (
 			"SELECT o.`id`, `date`, `first_name`, `last_name`, p.`name` AS `productname`, `email_address`,
