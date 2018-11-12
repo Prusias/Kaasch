@@ -285,6 +285,9 @@ echo ("
 ");
 
 }
+else {
+	echo "This record is locked."
+}
 ?>
 
 <?php require_once(get_document_root() . "/includes/footer.php"); ?>

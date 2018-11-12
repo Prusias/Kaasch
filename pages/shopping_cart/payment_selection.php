@@ -1,76 +1,144 @@
 <?php
 	require_once("../../document_root.php");
 	require_once(get_document_root().'/includes/ddb_connect.php');
+	// require (get_document_root().'\includes/databases.php');
 
 	require_once(get_document_root() . "/includes/header.php");
 	get_header('kaasch', '');
 	$db = $mysqli;
+	$orderid = $_GET['orderid'];
 ?>
+<form method="post" action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']), "?orderid=$orderid";?>" style="display: inline-block">
 
-  <h3>Order overview</h3>
-  <table>
     <?php
-    //   foreach($key as $value){
-    //     echo "<tr><td>$value</td><td>$$</td></tr>";
-    // }
+
+		if (isset($_POST['confirm'])){
+			$paymentmethods_id = $_POST['payment_method'];
+			$sql = (
+				"UPDATE `orders`
+				SET `is_paid` = 1, `paymentmethods_id` = $paymentmethods_id
+    		WHERE `id` = $orderid;"
+			);
+			mysqli_query($db, $sql);
+			header("location: payment_success.php?orderid={$_GET['orderid']}");
+		}
+		$sql = (
+			"SELECT o.`id`, `date`, `first_name`, `last_name`, p.`name` AS `productname`, `email_address`,
+				`streetname`, `house_number`, `city`, `postal_code`, `country`, pm.`name` AS `paymentmethodname`, `amount`, `price`*`amount` AS `pricesum`
+			FROM `orders` o
+				JOIN `users` u ON u.`id` = o.`users_id`
+	      JOIN `orders_has_products` ohp ON ohp.`orders_id` = o.`id`
+	      JOIN `products` p ON p.`id` = ohp.`products_id`
+	      JOIN `addresses` a ON a.`id` = u.`addresses_id`
+	      JOIN `paymentmethods` pm ON pm.`id` = o.`paymentmethods_id`
+	  WHERE o.`id` = $orderid
+	  ORDER BY `productname`;
+		");
+		$result = mysqli_query($db, $sql);
+		$sumprice = 0;
+		$runOnce = 1;
+		if (mysqli_num_rows($result) > 0){
+			while($row = mysqli_fetch_assoc($result)){
+				echo ("
+				<div class='mx-auto'>
+					<div class='container'>
+						<div class='row'>
+							<div class='col-12'>
+						  <h3>Order overview</h3>
+							<table class='table pl-5' style='display:inline; width:15rem'>
+								<tbody>
+								<tr>
+									<td>".$row['productname']."</td>
+									<td>".$row['amount']."</td>
+									<td>".$row['pricesum']."</td>
+								</tr>
+							</tbody>
+							");
+							$sumprice += $row['pricesum'];
+
+							if ($runOnce == 1){
+								echo("
+								<thead>
+								<tr>
+									<td><b>Product</b></td>
+									<td><b>Amount</b></td>
+									<td><b>Price</b></td>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td></td>
+									<td><b>Total</b></td>
+									<td>$sumprice</td>
+								</tr>
+								</tbody>
+								</table>
+								<h3>Delivery address</h3>
+								<table class='table pl-5' style='display:inline; width:20rem'>
+								<tbody>
+									<tr>
+										<td align='right'>".$row['first_name']." ".$row['last_name']."</td>
+									</tr>
+									</tbody>
+									<tbody>
+									<tr>
+										<td colspan='2' align='right'>".$row['streetname']." ".$row['house_number']."</td>
+									</tr>
+									</tbody>
+									<tbody>
+									<tr>
+										<td colspan='2' align='right'>".$row['city']." ".$row['postal_code']."</td>
+									</tr>
+									</tbody>
+									<tbody>
+									<tr>
+										<td colspan='2' align='right'>".$row['country']."</td>
+									</tr>
+									</tbody>
+								</table>
+
+								<h3>Select payment method</h3>
+								<table class='table pl-5' style='display:inline; width:20rem'>
+									<tbody>
+									<tr>
+									<td><div class='form-check'>
+									  <input class='form-check-input' type='radio' name='payment_method' value='1' checked>
+									    PayPal
+									  </label>
+									</div></td>
+									<td><div class='form-check'>
+									  <input class='form-check-input' type='radio' name='payment_method' value='2'>
+									    iDeal
+									  </label>
+									</div></td>
+									<td><div class='form-check'>
+									  <input class='form-check-input' type='radio' name='payment_method' value='3'>
+									    Credit Card
+									  </label>
+									</div></td>
+									<td><div class='form-check'>
+									  <input class='form-check-input' type='radio' name='payment_method' value='4'>
+									    Bitcoin
+									  </label>
+									</div></td>
+									</tr>
+									</tbody>
+									</table>
+										<p>
+										<input class='btn btn-primary' type='submit' name='confirm' value='Confirm'>
+										</form>
+										</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					");
+					$runOnce = 0;
+				}
+
+			}
+
+		}
     ?>
-    <tr>
-      <td>Product 1</td>
-      <td>$$</td>
-    </tr>
-    <tr>
-      <td>Product 2</td>
-      <td>$$</td>
-    </tr>
-    <tr>
-      <td><b>Total:</b></td>
-      <td><b>$$$$</b></td>
-    </tr>
-  </table>
-  <br>
-  <h3>Delivery address</h3>
-  <table>
-    First_name Last_name<br>
-    Street #<br>
-    City Postal_code<br>
-    Country<br>
-  <br>
-  <p><h3>Select payment method</h3></p>
-  <form method = 'post'>
-    <table>
-      <tr>
-        <td><input type="radio" name="payment_method" value="paypal">Paypal</td>
-        <td><input type="radio" name="payment_method" value="ideal">iDeal</td>
-        <td><input type="radio" name="payment_method" value="creditcard">Credit Card</td>
-        <td><input type="radio" name="payment_method" value="bitcoin">Bitcoin</td>
-      </tr>
-    </table>
-      <br />
-      <input type="submit" name="submit" value="Confirm">
-  </form>
 
-
-
-
-<?php
-if(isset($_POST['submit'])){
-  if(!isset($_POST['payment_method'])){
-    echo "Please select a payment method.";
-  }
-  else{
-    if($_POST['payment_method']=='paypal'){
-      echo "PayPal";
-    }
-    elseif($_POST['payment_method']=='ideal'){
-      echo "iDeal";
-    }
-    elseif($_POST['payment_method']=='creditcard'){
-      echo "Credit Card";
-    }
-    elseif($_POST['payment_method']=='bitcoin'){
-      echo "Bitcoin";
-    }
-  }
-}
-?>
 <?php require_once(get_document_root() . "/includes/footer.php"); ?>

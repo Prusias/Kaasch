@@ -6,7 +6,7 @@
 	require_once(get_document_root() . "/includes/header.php");
 	get_header('kaasch', '');
 	$userid = $_GET['user_id'];
-
+if($_SESSION['is_admin']){
 $db = $mysqli;
 
 	$sql = (
@@ -75,6 +75,9 @@ $db = $mysqli;
 		}
 		else {
 			echo "<h3>No records found</h3>";
+		}
+		else {
+			echo "This record is locked."
 		}
 ?>
   <?php require_once(get_document_root() . "\includes\\footer.php"); ?>
