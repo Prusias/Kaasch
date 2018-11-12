@@ -65,7 +65,7 @@ $db = $mysqli;
 						<td>$date</td>
 						<td>".$row['total']."</td>
 						<td>$status</td>
-						<td><b><a href='account_order.php?userid=$userid&orderid=$orderid'>></a></b></td>
+						<td><b><a href='account_order.php?orderid=$orderid'>></a></b></td>
 					</tr>
 					</thread>
 					</div>
