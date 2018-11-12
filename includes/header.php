@@ -114,13 +114,13 @@ if (login_check()) {
 echo <<<EOT
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            <a class="nav-link js-scroll-trigger" href='{$relative_path}/pages/about.php'>About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#shop">shop</a>
+            <a class="nav-link js-scroll-trigger" href='{$relative_path}/pages/shop.php'>shop</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            <a class="nav-link js-scroll-trigger" href='{$relative_path}/pages/contact.php'>Contact</a>
           </li>
 EOT;
 // TODO: Display amount of items in cart
@@ -160,5 +160,4 @@ echo <<<EOT
 EOT;
 session_write_close();
 }
-
 ?>
