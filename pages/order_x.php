@@ -28,6 +28,7 @@
 				<tr>
 				  <th scope="col">Product Name</th>
 				  <th scope="col">Product Price</th>
+				  <th scope="col">Amount purchased</th>
 				  <th scope="col">Total paid is Euros</th>
 				</tr>
 			  </thead>
@@ -37,7 +38,7 @@
 
 
 		$sql = (
-		"SELECT p.`name`, a.`amount`, (a.`amount`*p.`price`) AS `total`
+		"SELECT p.`name`, a.`amount`, p.`price`, (a.`amount`*p.`price`) AS `total`
 		FROM `orders_has_products` a JOIN `products` p
 		ON a.`products_id` = p.`id` AND a.`orders_id`  = $id;
 		");
@@ -50,6 +51,7 @@
 				<tbody>
 					<tr>
 					  <th scope='row'>" . $row['name'] . "</th>
+					  <td>" . $row['price'] . "</td>
 					  <td>" . $row['amount'] . "</td>
 					  <td>" . $row['total'] ."</td>
 					</tr>
@@ -61,7 +63,7 @@
 echo "
 <tboy>
 <tr>
-	<td colspan=2><b>Total</b></td>
+	<td colspan=3><b>Total</b></td>
 	<td><b>$total</b></td>
 </tr>
 </tboy>
