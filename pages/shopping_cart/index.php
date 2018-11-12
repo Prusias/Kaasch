@@ -40,75 +40,84 @@
                 <tbody>
                     <?php
                         $count = 0;
-                        foreach($_SESSION["shoppingcart"] as $cart) {
-                            $count++;
-                            $product_id = mysqli_real_escape_string($mysqli, $cart[0]);
-                            $amount = $cart[1];
+                        if (isset($_SESSION["shoppingcart"])) {
+                            foreach($_SESSION["shoppingcart"] as $cart) {
+                                $count++;
+                                $product_id = mysqli_real_escape_string($mysqli, $cart[0]);
+                                $amount = $cart[1];
 
-                            $result = $mysqli->query("SELECT * FROM products WHERE id = {$product_id};");
+                                $result = $mysqli->query("SELECT * FROM products WHERE id = {$product_id};");
 
-                            if (mysqli_num_rows($result) > 0){
-                                $row = mysqli_fetch_assoc($result);
-                                $description = substr($row['description'], 0, 64);
-                                $total += ($amount * $row['price']);
-                                $itemcount += $amount;
+                                if ($result && mysqli_num_rows($result) > 0){
+                                    $row = mysqli_fetch_assoc($result);
+                                    $description = substr($row['description'], 0, 64);
+                                    $total += ($amount * $row['price']);
+                                    $itemcount += $amount;
 
-                                echo <<<EOT
-                                <tr>
-                                    <th scope="col">{$count}</th>
-                                    <td>{$row['name']}</td>
-                                    <td>{$description}</td>
-                                    <td>{$row['price']}</td>
-                                    <td>
-                                        <form method="post" action="{$relative_root}/logic/shopping_cart/cart_update_product.php">
-                                            <input type="text" name="product_id" value="{$product_id}" class="d-none">
-                                            <input type="submit" name="Remove" value="Remove" class="btn btn-danger" style="float: right;">
-                                        </form>
-                                    </td>
-                                </tr>
+                                    echo <<<EOT
+                                    <tr>
+                                        <th scope="col">{$count}</th>
+                                        <td>{$row['name']}</td>
+                                        <td>{$description}</td>
+                                        <td>{$row['price']}</td>
+                                        <td>
+                                            <form method="post" action="{$relative_root}/logic/shopping_cart/cart_update_product.php">
+                                                <input type="text" name="product_id" value="{$product_id}" class="d-none">
+                                                <input type="submit" name="Remove" value="Remove" class="btn btn-danger" style="float: right;">
+                                            </form>
+                                        </td>
+                                    </tr>
 EOT;
                     
+                                } 
+                            } 
+                        } else {
+                            echo "
+                            <div class='alert alert-info' role='alert'>
+                                You have no products in your cart!
+                            </div>";
                         }
-                        
-                    }
                     ?>
                 </tbody>
             </table>
             <table class="table mt-4 table-sm">
                 <tbody>
                     <?php
-                        foreach($_SESSION["shoppingcart"] as $cart) {
-                            $product_id = mysqli_real_escape_string($mysqli, $cart[0]);
-                            $amount = $cart[1];
+                        if (isset($_SESSION["shoppingcart"])) {
+                            foreach($_SESSION["shoppingcart"] as $cart) {
+                                $product_id = mysqli_real_escape_string($mysqli, $cart[0]);
+                                $amount = $cart[1];
 
-                            $result = $mysqli->query("SELECT * FROM products WHERE id = {$product_id};");
+                                $result = $mysqli->query("SELECT * FROM products WHERE id = {$product_id};");
 
-                            if (mysqli_num_rows($result) > 0){
-                                $row = mysqli_fetch_assoc($result);
-                                $totalprice = $row['price'] * $amount;
+                                if (mysqli_num_rows($result) > 0){
+                                    $row = mysqli_fetch_assoc($result);
+                                    $totalprice = $row['price'] * $amount;
 
-                                echo <<<EOT
-                                <tr>
-                                    <td>{$row['name']}</td>
-                                    <td>
-                                        <div style="width: 50%; float: left;">
-                                            <p style="float: right; margin-right: 2rem;">Amount: {$amount}</p>
-                                        </div>
-                                        <div style="width: 50%; float: left;">
-                                            <form method="post" action="{$relative_root}/logic/shopping_cart/cart_update_product.php">
-                                                <input type="text" name="product_id" value="{$product_id}" class="d-none">
-                                                <button type="submit" name="+" value="+" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle" data-fa-transform="grow-2"></i></button>
-                                                <button type="submit" name="-" value="-" class="btn btn-primary btn-sm"><i class="fas fa-minus-circle" data-fa-transform="grow-2"></i></button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                    <td style="text-align: right;">Price: &euro;{$totalprice}</td>
-                                </tr>
+                                    echo <<<EOT
+                                    <tr>
+                                        <td>{$row['name']}</td>
+                                        <td>
+                                            <div style="width: 50%; float: left;">
+                                                <p style="float: right; margin-right: 2rem;">Amount: {$amount}</p>
+                                            </div>
+                                            <div style="width: 50%; float: left;">
+                                                <form method="post" action="{$relative_root}/logic/shopping_cart/cart_update_product.php">
+                                                    <input type="text" name="product_id" value="{$product_id}" class="d-none">
+                                                    <button type="submit" name="+" value="+" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle" data-fa-transform="grow-2"></i></button>
+                                                    <button type="submit" name="-" value="-" class="btn btn-primary btn-sm"><i class="fas fa-minus-circle" data-fa-transform="grow-2"></i></button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        <td style="text-align: right;">Price: &euro;{$totalprice}</td>
+                                    </tr>
 EOT;
-                            
+                                
+                                }
+                            }
+                        } else {
+
                         }
-                        
-                    }
                 ?>
                 </tbody>
             </table>
@@ -128,7 +137,7 @@ EOT;
             </div>
         </div>
         <div class="col-3 py-4">
-            <table style="float: right">
+            <table>
                 <tr>
                     <td>Price: </td>
                     <td>&euro;<?php echo $total ?></td>
@@ -174,9 +183,9 @@ EOT;
             </table>
             <?php
                 if (login_check()) {
-                    echo "<a href='{$relative_root}/pages/shopping_cart/finalize_order.php' class='btn btn-primary mt-3' style='float: right;'>Order</a>";
+                    echo "<a href='{$relative_root}/pages/shopping_cart/finalize_order.php' class='btn btn-primary mt-3'>Order</a>";
                 } else {
-                    echo "<a href='{$relative_root}/pages/login_form.php' class='btn btn-primary mt-3' style='float: right;'>Please login to order</a>";
+                    echo "<a href='{$relative_root}/pages/login_form.php' class='btn btn-primary mt-3'>Please login to order</a>";
                 }
 
 

@@ -5,12 +5,12 @@
         if(RUN_MODE_PRODUCTION === true) {
             return $_SERVER["DOCUMENT_ROOT"];
         }
-        return 'C:\Xampp\htdocs\kaasch';
+        return '/mnt/d/Mike/Documents/Xampp/htdocs';
     }
     function get_relative_root() {
         if(RUN_MODE_PRODUCTION === true) {
             return "";
         }
-        return "\kaasch";
+        return "/htdocs";
     }
 ?>

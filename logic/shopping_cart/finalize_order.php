@@ -47,7 +47,7 @@
             $product_id = mysqli_real_escape_string($mysqli, $cart[0]);
             $amount = mysqli_real_escape_string($mysqli, $cart[1]);
             
-            $mysqli->query("INSERT INTO orders_has_products (orders_id, producst_id, amount) VALUES ({$order_id}, {$product_id}, {$amount});");
+            $mysqli->query("INSERT INTO orders_has_products (orders_id, products_id, amount) VALUES ({$order_id}, {$product_id}, {$amount});");
         }
 
         header("Location: " . get_relative_root() . "/pages/shopping_cart/payment_selection.php?orderid={$order_id}");
