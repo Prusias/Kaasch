@@ -13,25 +13,25 @@
 
 					<form action="<?php echo($_SERVER["PHP_SELF"]);?>" method="get">
 						<select name="Order" class="form-control">
-						<option value="priceDESC;">Price low - high</option>
-						<option value="priceASC">Price high - low</option>
+						<option value="createdDESC">Upload date</option>
+						<option value="priceASC">Price low - high</option>
+						<option value="priceDESC">Price high - low</option>
 						<option value="nameASC">Title A - Z</option>
 						<option value="nameDESC">Title Z - A</option>
-						<option value="createdDESC">Upload date</option>
 						</select><br>
 						<input type="submit" class="btn btn-primary">
 						</form>
 					</div>
 					<?php
 					if(isset($_GET["Order"])){
-						if($_GET["Order"] == "nameDESC"){
-							$result = $mysqli->query("SELECT * FROM products ORDER BY price ACS;");
+						if($_GET["Order"] == "priceASC"){
+							$result = $mysqli->query("SELECT * FROM products ORDER BY price ASC;");
 						}
-						elseif($_GET["Order"] == "priceASC"){
+						elseif($_GET["Order"] == "priceDESC"){
 							$result = $mysqli->query("SELECT * FROM products ORDER BY price DESC;");
 						}
 						elseif($_GET["Order"] == "nameASC"){
-							$result = $mysqli->query("SELECT * FROM products ORDER BY name ACS;");
+							$result = $mysqli->query("SELECT * FROM products ORDER BY name ASC;");
 						}
 						elseif($_GET["Order"] == "nameDESC"){
 							$result = $mysqli->query("SELECT * FROM products ORDER BY name DESC;");
@@ -43,6 +43,7 @@
 					else{
 							$result = $mysqli->query("SELECT * FROM products ORDER BY created_at DESC;");
 						}
+						
 					if (mysqli_num_rows($result) > 0){
 						$relative_root = get_relative_root();
 						while($row = mysqli_fetch_assoc($result)) {
