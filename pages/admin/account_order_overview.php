@@ -76,8 +76,9 @@ $db = $mysqli;
 		else {
 			echo "<h3>No records found</h3>";
 		}
+	}
 		else {
-			echo "This record is locked."
+			echo "This record is locked.";
 		}
 ?>
   <?php require_once(get_document_root() . "\includes\\footer.php"); ?>

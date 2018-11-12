@@ -286,7 +286,7 @@ echo ("
 
 }
 else {
-	echo "This record is locked."
+	echo "This record is locked.";
 }
 ?>
 

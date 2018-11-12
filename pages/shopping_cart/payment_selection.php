@@ -31,7 +31,7 @@
 	      JOIN `products` p ON p.`id` = ohp.`products_id`
 	      JOIN `addresses` a ON a.`id` = u.`addresses_id`
 	      JOIN `paymentmethods` pm ON pm.`id` = o.`paymentmethods_id`
-	  WHERE o.`id` = $orderid
+	  WHERE o.`id` = $orderid AND `is_paid` = 0
 	  ORDER BY `productname`;
 		");
 		$result = mysqli_query($db, $sql);
