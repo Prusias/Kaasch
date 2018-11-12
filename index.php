@@ -41,7 +41,7 @@
 					</div> -->
 
 					<?php
-					$result = $mysqli->query("SELECT * FROM products ORDER BY created_at DESC LIMIT 12;");
+					$result = $mysqli->query("SELECT * FROM products ORDER BY created_at DESC LIMIT 3;");
 
 					if (mysqli_num_rows($result) > 0){
 						$relative_root = get_relative_root();

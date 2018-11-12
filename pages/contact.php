@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-           <h2>Contact Kaasch</h2><br>
+           <h2>Kaasch contact</h2><br>
 			
 			<p> 
 			Do you have any questions about our Kaasch? Please call 06 12 34 5678 for advice.<br><br>

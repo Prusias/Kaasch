@@ -27,7 +27,7 @@ echo("Name: <b> ". $_POST["name"]. "</b><br>");
 echo("Description: <b>".$_POST["description"] . "</b><br>");
 echo("Price: <b> ". $_POST["price"]. "</b><br>");
 echo("Shelflife: <b> ". $_POST["shelflife"]. "</b><br></b><br>");
-echo("(Add the image in: c:/xampp/htdocs/kaasch/images)</b><br>");
+echo("(Add the image in: c:/xampp/htdocs/kaasch/images, imagename = id)</b><br>");
 mysqli_close($mysqli);
 
 
