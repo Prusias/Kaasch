@@ -31,6 +31,7 @@
 				  <th scope="col">Total paid is Euros</th>
 				</tr>
 			  </thead>
+			';
 
 <?php
 
@@ -42,6 +43,7 @@
 		");
 		$total = 0;
 		$result = mysqli_query($mysqli, $sql);
+
 		if (mysqli_num_rows($result) > 0) {
 			while($row = mysqli_fetch_assoc($result)){
 				echo ("

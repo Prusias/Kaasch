@@ -27,9 +27,11 @@ if (!empty($_POST)){
 
 			if($is_admin == "1") {
 				header("Location: admin/admin.php");
+			
 			}
 			elseif($is_admin =="0") {
 				header("Location: ../index.php?id=".$user_id."");
+			
 			}
 		}
 	} else {

@@ -7,19 +7,19 @@
 	get_header('kaasch', '');
 
 	session_start();
-	$id=$_SESSION['user_id'];
-
-
+	$id=$_SESSION['id'];
+	
+	
 ?>
 <p class="h2 text-center"> Your order history </p>
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Order Number</th>
-      <th scope="col">Order Date</th>
-      <th scope="col">Payment Method</th>
-      <th scope="col">Paid</th>
-	  <th scope="col">Details</th>
+      <th scope="col">Order number</th>
+      <th scope="col">order date</th>
+      <th scope="col">payment mothod</th>
+      <th scope="col">paid ?</th>
+	  <th scope="col">More</th>
     </tr>
   </thead>
 
@@ -44,6 +44,7 @@ $result = mysqli_query($mysqli, $sql);
 if (mysqli_num_rows($result) > 0) {
 
     while($row = mysqli_fetch_assoc($result)) {
+
 	echo "<tbody>
     <tr>
       <th scope='row'>" . $row['orderid'] . "</th>
@@ -55,12 +56,13 @@ if (mysqli_num_rows($result) > 0) {
 
   </tbody>";
 
-  }
-echo "</table>";
+	  }
+	echo "</table>";
 
 
-} else {
-    echo "No records found";
+} 
+	else {
+    echo "<center><th scope='row'>No records found</th></center>";
 }
 
 ?>
