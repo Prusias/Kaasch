@@ -17,7 +17,7 @@
 				<table>
 				<tr><td>Name:</td><td> <input type ="text" name="name" class="form-control" size="25"></td></tr>
 				<tr><td VALIGN=TOP>Description:</td><td>  <textarea name="description" class="form-control" rows="5" cols="30"></textarea></td></tr>
-				<tr><td>Price(€):</td><td> <input type ="text" name="price" class="form-control" size="25" placeholder = 'euros per 500 gram'></td></tr>
+				<tr><td>Price(€0.00):</td><td> <input type ="text" name="price" class="form-control" size="25" placeholder = 'euros per 500 gram'></td></tr>
 				<tr><td>BTW:</td><td> <input type ="radio" name="category" value="1" checked>21%(product)<input type ="radio" name="category" value="2">6%(food)</td></tr>
 				<tr><td>Shelflife:</td><td> <input type ="text" name="shelflife" class="form-control" size="25" placeholder = 'years'></td></tr>
 				</table><br>

@@ -19,7 +19,7 @@
 						<option value="nameASC">Title A - Z</option>
 						<option value="nameDESC">Title Z - A</option>
 						</select><br>
-						<input type="submit" class="btn btn-primary">
+						<input type="submit" value="Order" class="btn btn-primary">
 						</form>
 					</div>
 					<?php
