@@ -14,8 +14,8 @@
 					<h2>Please fill your E-mail in</h2>
 					<form method="post" action="password_update.php">
 						<div class="form-group">
-							<label for="email">Email address:</label>
-							<input name="email" type="text"  required title="please fill your email" class="form-control">
+							<label for="mail">Email address:</label>
+							<input type="text"  name="mail"  required title="please fill your email" class="form-control">
 						</div>
 						
 						<div class="form-group">

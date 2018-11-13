@@ -10,11 +10,11 @@
 
 
 	if (!empty($_POST['Submit'])){
-
-		$email =  strtolower(mysqli_real_escape_string($mysqli, $_POST['email']));
-
+		
+		$email = strtolower(mysqli_real_escape_string($mysqli, $_POST["mail"]));
+		//var_dump($mail);
 		$result = $mysqli->query("SELECT * FROM users WHERE email_address ='$email'");
-
+		//$_SESSION['mail'] = $email;
 		if (mysqli_num_rows($result) > 0){
 			echo '
 			<div class="container">
@@ -22,7 +22,7 @@
 				<div class="col-12">
 					<div class="mx-auto">
 						<h2>Fill your new password</h2>
-						<form method="post" action="password_update.php">
+						<form method="post" action="password_update_last.php?mail='.htmlspecialchars($email).'">
 							<div class="form-group">
 								<label for="pass">Password:</label>
 								<input name="password" type="password"  required title="please fill your new password" class="form-control">
@@ -43,21 +43,9 @@
 		
 		 else {
 			header("Location:password_forgotten.php?message_code=10");
+
 		 	}
 	}
-	if(isset($_POST['change']))
-			{
-				$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-				$change = $mysqli->query("UPDATE users SET password_hash = '$password' WHERE email_address = '$email'");
-				if($change == true)
-				{
-					header("Location: login_form.php?message_code=11");
-				}
-				else
-				{
-					header("Location: password_forgotten.php?message_code=2");
-				}
-			}
 	
 ?>
 	

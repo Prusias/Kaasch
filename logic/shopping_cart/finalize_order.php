@@ -39,14 +39,14 @@
         // Status starts at 1
         // Payment method can't be null. Default to 1
 
-    
+
         $mysqli->query("INSERT INTO orders (users_id, date, status_id, paymentmethods_id, is_paid, addresses_id) VALUES ({$user_id}, NOW(), 1, 1, 0, {$addresses_id});");
         $order_id = $mysqli->insert_id;
 
         foreach($_SESSION["shoppingcart"] as $cart) {
             $product_id = mysqli_real_escape_string($mysqli, $cart[0]);
             $amount = mysqli_real_escape_string($mysqli, $cart[1]);
-            
+
             $mysqli->query("INSERT INTO orders_has_products (orders_id, products_id, amount) VALUES ({$order_id}, {$product_id}, {$amount});");
         }
 

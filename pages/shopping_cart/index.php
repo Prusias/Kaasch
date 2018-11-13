@@ -14,7 +14,7 @@
     //    array(16, 1)
     //);
     //$_SESSION["shoppingcart"] = array(array(1,4));
-    //$_SESSION["shoppingcart"] = $fakedata;  
+    //$_SESSION["shoppingcart"] = $fakedata;
     $total = 0;
     $itemcount = 0;
     $discount = 0;
@@ -32,8 +32,8 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Product</th>
-                        <th scope="col">Beschrijving</th>
-                        <th scope="col">Prijs p/s</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Price</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -68,9 +68,9 @@
                                         </td>
                                     </tr>
 EOT;
-                    
-                                } 
-                            } 
+
+                                }
+                            }
                         } else {
                             echo "
                             <div class='alert alert-info' role='alert'>
@@ -112,7 +112,7 @@ EOT;
                                         <td style="text-align: right;">Price: &euro;{$totalprice}</td>
                                     </tr>
 EOT;
-                                
+
                                 }
                             }
                         } else {
@@ -144,7 +144,7 @@ EOT;
                 </tr>
                 <tr>
                     <td>Shipping:</td>
-                    <td>&euro;<?php 
+                    <td>&euro;<?php
                     $shipping = $itemcount * 1.5;
                     $total += $shipping;
                     echo $shipping;
@@ -165,7 +165,7 @@ EOT;
                 </tr>
                 <tr>
                     <td>VAT: </td>
-                    <td>&euro;<?php 
+                    <td>&euro;<?php
                     // TODO: ADD TAX DEPENDENT ON CATEGORY
                     $tax = $total * 0.21;
                     $total += $tax;
@@ -174,7 +174,7 @@ EOT;
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>&euro;<?php 
+                    <td>&euro;<?php
                     $total = round($total, 2);
                     $_SESSION["shoppingcart_price"] = $total;
                     echo $_SESSION["shoppingcart_price"];
@@ -191,7 +191,7 @@ EOT;
 
             ?>
 
-            
+
         </div>
     </div>
 </div>
