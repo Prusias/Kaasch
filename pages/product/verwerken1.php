@@ -35,8 +35,8 @@ mysqli_close($mysqli);
 
 ?>
 <form>
-<input type="Button" value="Homepage" class="btn btn-primary" onclick="window.location.href='http://localhost/kaasch/'">
-<input type="Button" value="Back" class="btn btn-primary" onclick="window.location.href='http://localhost/kaasch/pages/product/product_add.php'">
+<input type="Button" value="Homepage" class="btn btn-primary" onclick="window.location.href='<?php get_relative_root();?>'">
+<input type="Button" value="Back" class="btn btn-primary" onclick="window.location.href='<?php get_relative_root();?>/product/product_add.php'">
 </form>
 
 
