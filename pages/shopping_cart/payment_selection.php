@@ -8,7 +8,10 @@
 	$db = $mysqli;
 	$orderid = $_GET['orderid'];
 ?>
-<form method="post" action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']), "?orderid=$orderid";?>" style="display: inline-block">
+<div class='row'>
+	<div class='col-3'></div>
+	<div class='col-6'>
+		<form method="post" action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']), "?orderid=$orderid";?>" style="display: inline-block">
 
     <?php
 
@@ -144,5 +147,9 @@
 		  header("refresh:5;url=$homepage");
 		}
     ?>
+		</form>
+	</div>
+	<div class='col-3'></div>
+</div>
 
 <?php require_once(get_document_root() . "/includes/footer.php"); ?>
