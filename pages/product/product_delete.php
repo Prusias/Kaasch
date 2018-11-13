@@ -53,7 +53,7 @@
 				</form>
 				</td>
 				<td>
-				<input type="Button" value="Back" class="btn btn-primary" onclick="window.location.href='http://localhost/kaasch/pages/product/product_admin.php?id=<?php echo $productid ?>'">
+				<input type="Button" value="Back" class="btn btn-primary" onclick="window.location.href='<?php echo get_relative_root();?>/pages/product/product_admin.php?id=<?php echo $productid ?>'">
 				</form>
 				</td>
 				</tr>
