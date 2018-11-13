@@ -1,6 +1,6 @@
 <?php
-	require_once("..\..\document_root.php");
-	require (get_document_root().'\includes/ddb_connect.php');
+	require_once("../../document_root.php");
+	require (get_document_root().'/includes/ddb_connect.php');
 	// require (get_document_root().'\includes/databases.php');
 
 	require_once(get_document_root() . "/includes/header.php");
@@ -81,4 +81,4 @@ $db = $mysqli;
 			echo "This record is locked.";
 		}
 ?>
-  <?php require_once(get_document_root() . "\includes\\footer.php"); ?>
+  <?php require_once(get_document_root() . "/includes/footer.php"); ?>
