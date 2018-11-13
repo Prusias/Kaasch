@@ -46,10 +46,17 @@
 				</tr>
 				<tr>
 				<td align='right'>
+<<<<<<< HEAD
 				<form method="post" action="{$relative_root}/logic/shopping_cart/add_product.php">
 				<input name="id" type="text" class="d-none" value="<?php echo "$productid" ?>">
 				<input name="return_url" type="text" class="d-none" value="/pages/product/product.php?id={$productid}">
 				<button type="submit" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
+=======
+				<form method="post" action="<?php echo get_relative_root();?>/logic/shopping_cart/add_product.php">
+					<input name="product_id" type="text" class="d-none" value="<?php echo "$productid" ?>">
+					<input name="return_url" type="text" class="d-none" value="/pages/product/product_admin.php?id=<?php echo "$productid" ?>">
+					<button type="submit" name="submit" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
+>>>>>>> master
 				</form>
 				</td>
 				<td>
@@ -78,9 +85,12 @@
 
         </div>
     </div>
+<<<<<<< HEAD
+=======
     <?php
 	require_once(get_document_root() . '/pages/product/reviews/reviews.php');
 	?>
+>>>>>>> e59aed966dbc480f046f85f4e1afd97ce465e8d4
 </div>
 
 
