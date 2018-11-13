@@ -88,9 +88,13 @@ if (isset($_GET['message_code'])) {
       echo"<div class='alert alert-success'>";
       echo '<strong>Success!</strong> Your password has ben changed successfully.';
       break;
-  case 12:
+	case 12:
       echo"<div class='alert alert-success'>";
       echo '<strong>Success!</strong> You have edited the order.';
+      break;
+	case 13:
+      echo '<div class="alert alert-info">';
+      echo '<strong>oops!</strong> Password and Password repeat don`t match please try again.';
       break;
   }
  echo "</div>";

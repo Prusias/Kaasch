@@ -70,6 +70,10 @@
 										<label for="password">Password</label>
 										<input type = "password" name = "pwd" pattern=".{6,}"   required title="the password must be at least 6 characters" class="form-control">
 									</div>
+									<div class="form-group">
+										<label for="password_rep">Password repeat</label>
+										<input type = "password" name = "pwd_rep" pattern=".{6,}"   required title="Please fill the password again" class="form-control">
+									</div>
 										<input type="submit" name='signup' value="signup" class="btn btn-primary">
 									</form>
 								</div>

@@ -54,8 +54,16 @@
 			}
 			$state = mysqli_real_escape_string($mysqli, $_POST['state']);
 			$country = mysqli_real_escape_string($mysqli, $_POST['country']);
-			$password = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
-
+			if($_POST['pwd'] == $_POST['pwd_rep'])
+			{
+				$password = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
+				
+			}else{
+				
+				header("Location: signup_form.php?message_code=13");
+				exit;
+			}
+			//now begining with the real work
 				$query1 = "INSERT INTO addresses(streetname, house_number, city, postal_code, state, country)";
 				$query1 .= " VALUES ('$street_name', '$house_number', '$city', '$postcode', '$state', '$country')";
 				$controle1 = mysqli_query($mysqli,$query1);
