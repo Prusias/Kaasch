@@ -46,9 +46,10 @@
 				</tr>
 				<tr>
 				<td align='right'>
-				<form method="post" action="http://localhost/kaasch/pages/shopping_cart/">
-				<input name="id" type="text" class="d-none" value="<?php echo "$productid" ?>">
-				<button type="submit" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
+				<form method="post" action="<?php echo get_relative_root();?>/logic/shopping_cart/add_product.php">
+					<input name="product_id" type="text" class="d-none" value="<?php echo "$productid" ?>">
+					<input name="return_url" type="text" class="d-none" value="/pages/product/product_admin.php?id=<?php echo "$productid" ?>">
+					<button type="submit" name="submit" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i></button>
 				</form>
 				</td>
 				<td>
@@ -77,9 +78,6 @@
 
         </div>
     </div>
-    <?php 
-	require_once(get_document_root() . '/pages/product/reviews/reviews.php'); 
-	?>
 </div>
 
 

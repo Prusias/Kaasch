@@ -13,9 +13,10 @@
     }
     if (isset($_POST["+"])) {
         for($i = 0; $i < sizeof($shoppingcart); $i++ ){
-            if($shoppingcart[$i][0] == $_POST['product_id']);
-            $newshoppingcart[$i][1] = $shoppingcart[$i][1] + 1;
-            $_SESSION["shoppingcart"] = $newshoppingcart;
+            if($shoppingcart[$i][0] == $_POST['product_id']) {
+                $newshoppingcart[$i][1] = $shoppingcart[$i][1] + 1;
+                $_SESSION["shoppingcart"] = $newshoppingcart;
+            }
         }
     }
     if (isset($_POST["-"])) {
