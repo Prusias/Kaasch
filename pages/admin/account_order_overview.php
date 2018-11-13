@@ -65,7 +65,7 @@ $db = $mysqli;
 						<td>$date</td>
 						<td>".$row['total']."</td>
 						<td>$status</td>
-						<td><b><a href='account_order.php?userid=$userid&orderid=$orderid'>></a></b></td>
+						<td><b><a href='account_order.php?orderid=$orderid'>></a></b></td>
 					</tr>
 					</thread>
 					</div>
@@ -76,8 +76,9 @@ $db = $mysqli;
 		else {
 			echo "<h3>No records found</h3>";
 		}
+	}
 		else {
-			echo "This record is locked."
+			echo "This record is locked.";
 		}
 ?>
   <?php require_once(get_document_root() . "\includes\\footer.php"); ?>

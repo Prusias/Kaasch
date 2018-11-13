@@ -9,7 +9,6 @@
   $orderid = $_GET['orderid'];
 	$db = $mysqli;
   $homepage = "../../index.php";
-
   $sql = (
     "SELECT `name`
     FROM `paymentmethods` p

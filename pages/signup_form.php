@@ -18,7 +18,7 @@
 								<div class="mx-auto">
 									<form action="signup.php" method="post">
 									<h2> Making a new account</h2>
-									All fields are mandatory
+									All fields are mandatory except for State
 									<div class="form-group">
 										<label for="first_name">First Name:</label>
 										<input type = "text" name = "first_name" pattern=".{2,}" required title="the first name must be at least two letters" class="form-control">

@@ -5,11 +5,9 @@
 
 	require_once(get_document_root() . "\includes\header.php");
 	get_header('kaasch', '');
-	$userid = $_GET['userid'];
 	$orderid = $_GET['orderid'];
 if($_SESSION['is_admin']){
 		$db = $mysqli;
-
 		$sql = (
 			"SELECT `users_id`, o.`id`, `date`, s.`description` AS `statusdescription`, `first_name`, `last_name`, p.`name` AS `productname`, `email_address`,
 				`streetname`, `house_number`, `city`, `postal_code`, `country`, pm.`name` AS `paymentmethodname`, `amount`, `price`*`amount` AS `pricesum`
@@ -20,7 +18,7 @@ if($_SESSION['is_admin']){
 	      JOIN `addresses` a ON a.`id` = u.`addresses_id`
 	      JOIN `paymentmethods` pm ON pm.`id` = o.`paymentmethods_id`
 	      JOIN `status` s ON s.`id` = o.`status_id`
-	  WHERE `users_id` = $userid AND o.`id` = $orderid
+	  WHERE o.`id` = $orderid
 	  ORDER BY `productname`;
 		");
 		$result = mysqli_query($db, $sql);
@@ -32,6 +30,7 @@ if($_SESSION['is_admin']){
 					$date = date_create($row['date']);
 					$time = date_format($date, "H:i:s");
 					$date = date_format($date, "d/m/Y");
+					$userid = $row['users_id'];
 					echo ("
 					<div class='container'>
 					<table class='table' style='width:10rem'>
@@ -156,13 +155,13 @@ if($_SESSION['is_admin']){
 		");
 	}
 	echo ("
-	<form method='post' action='account_order_edit.php?userid=$userid&orderid=$orderid'>
+	<form method='post' action='account_order_edit.php?orderid=$orderid&userid=$userid'>
 	<input class='btn btn-primary' type='submit' name='edit' value='Edit order'>
 	</form>
 	");
-
+}
 else {
-	echo "This record is locked."
+	echo "This record is locked.";
 }
 ?>
   <?php require_once(get_document_root() . "/includes/footer.php"); ?>

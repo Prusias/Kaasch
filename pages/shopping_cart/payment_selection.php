@@ -31,7 +31,7 @@
 	      JOIN `products` p ON p.`id` = ohp.`products_id`
 	      JOIN `addresses` a ON a.`id` = u.`addresses_id`
 	      JOIN `paymentmethods` pm ON pm.`id` = o.`paymentmethods_id`
-	  WHERE o.`id` = $orderid
+	  WHERE o.`id` = $orderid AND `is_paid` = 0
 	  ORDER BY `productname`;
 		");
 		$result = mysqli_query($db, $sql);
@@ -39,32 +39,90 @@
 		$runOnce = 1;
 		if (mysqli_num_rows($result) > 0){
 			while($row = mysqli_fetch_assoc($result)){
-				echo ("
-				<div class='mx-auto'>
-					<div class='container'>
-						<div class='row'>
-							<div class='col-12'>
-						  <h3>Order overview</h3>
-							<table class='table pl-5' style='display:inline; width:15rem'>
-								<tbody>
+				if ($runOnce == 1){
+					echo("
+					<h3>Delivery address</h3>
+					<div class='mx-auto'>
+						<div class='container'>
+							<div class='row'>
+								<div class='col-12'>
+						<table class='table pl-5' style='display:inline; width:20rem'>
+							<tbody>
 								<tr>
-									<td>".$row['productname']."</td>
-									<td>".$row['amount']."</td>
-									<td>".$row['pricesum']."</td>
+									<td align='right'>".$row['first_name']." ".$row['last_name']."</td>
 								</tr>
-							</tbody>
+								</tbody>
+								<tbody>
+									<tr>
+										<td colspan='2' align='right'>".$row['streetname']." ".$row['house_number']."</td>
+									</tr>
+								</tbody>
+									<tbody>
+										<tr>
+											<td colspan='2' align='right'>".$row['city']." ".$row['postal_code']."</td>
+										</tr>
+									</tbody>
+								<tbody>
+									<tr>
+										<td colspan='2' align='right'>".$row['country']."</td>
+									</tr>
+								</tbody>
+							</table>
+							<h3>Select payment method</h3>
+							<table class='table pl-5' style='display:inline; width:20rem'>
+								<tbody>
+									<tr>
+										<td><div class='form-check'>
+											<input class='form-check-input' type='radio' name='payment_method' value='1' checked>
+												PayPal
+											</label>
+										</div></td>
+										<td><div class='form-check'>
+											<input class='form-check-input' type='radio' name='payment_method' value='2'>
+												iDeal
+											</label>
+										</div></td>
+										<td><div class='form-check'>
+											<input class='form-check-input' type='radio' name='payment_method' value='3'>
+												Credit Card
+											</label>
+										</div></td>
+										<td><div class='form-check'>
+											<input class='form-check-input' type='radio' name='payment_method' value='4'>
+												Bitcoin
+											</label>
+										</div></td>
+									</tr>
+								</tbody>
+							</table>
+							<p>
+								<input class='btn btn-primary' type='submit' name='confirm' value='Confirm'>
+								</form>
+							</p>
+							 <h3>Order overview</h3>
+								<table class='table pl-5' style='display:inline; width:15rem'>
+									<thead>
+										<tr>
+											<td><b>Product</b></td>
+											<td><b>Amount</b></td>
+											<td><b>Price</b></td>
+										</tr>
+									</thead>
+									");
+									$runOnce = 0;
+				}
+				echo ("
+									<tbody>
+									<tr>
+										<td>".$row['productname']."</td>
+										<td>".$row['amount']."</td>
+										<td>".$row['pricesum']."</td>
+									</tr>
+								</tbody>
 							");
 							$sumprice += $row['pricesum'];
-
-							if ($runOnce == 1){
-								echo("
-								<thead>
-								<tr>
-									<td><b>Product</b></td>
-									<td><b>Amount</b></td>
-									<td><b>Price</b></td>
-								</tr>
-								</thead>
+			}
+			echo ("
 								<tbody>
 								<tr>
 									<td></td>
@@ -73,71 +131,17 @@
 								</tr>
 								</tbody>
 								</table>
-								<h3>Delivery address</h3>
-								<table class='table pl-5' style='display:inline; width:20rem'>
-								<tbody>
-									<tr>
-										<td align='right'>".$row['first_name']." ".$row['last_name']."</td>
-									</tr>
-									</tbody>
-									<tbody>
-									<tr>
-										<td colspan='2' align='right'>".$row['streetname']." ".$row['house_number']."</td>
-									</tr>
-									</tbody>
-									<tbody>
-									<tr>
-										<td colspan='2' align='right'>".$row['city']." ".$row['postal_code']."</td>
-									</tr>
-									</tbody>
-									<tbody>
-									<tr>
-										<td colspan='2' align='right'>".$row['country']."</td>
-									</tr>
-									</tbody>
-								</table>
-
-								<h3>Select payment method</h3>
-								<table class='table pl-5' style='display:inline; width:20rem'>
-									<tbody>
-									<tr>
-									<td><div class='form-check'>
-									  <input class='form-check-input' type='radio' name='payment_method' value='1' checked>
-									    PayPal
-									  </label>
-									</div></td>
-									<td><div class='form-check'>
-									  <input class='form-check-input' type='radio' name='payment_method' value='2'>
-									    iDeal
-									  </label>
-									</div></td>
-									<td><div class='form-check'>
-									  <input class='form-check-input' type='radio' name='payment_method' value='3'>
-									    Credit Card
-									  </label>
-									</div></td>
-									<td><div class='form-check'>
-									  <input class='form-check-input' type='radio' name='payment_method' value='4'>
-									    Bitcoin
-									  </label>
-									</div></td>
-									</tr>
-									</tbody>
-									</table>
-										<p>
-										<input class='btn btn-primary' type='submit' name='confirm' value='Confirm'>
-										</form>
-										</p>
-								</div>
 							</div>
 						</div>
 					</div>
-					");
-					$runOnce = 0;
-				}
+				</div>
+");
 
-			}
-
+		}
+		else{
+			$homepage = "../../index.php";
+			echo "<h3>Something went wrong!</h3> Can't access this page. <p>You will be redirected to the home page in 5 seconds. If nothing happens, <a href=$homepage>click here.</a></p>";
+		  header("refresh:5;url=$homepage");
 		}
     ?>
 

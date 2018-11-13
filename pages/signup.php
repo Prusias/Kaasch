@@ -73,8 +73,8 @@
 						}
 					}
 
-				$query = "INSERT INTO users(first_name, last_name, email_address, telephone_number, gender, addresses_id, password_hash) ";
-				$query .= " VALUES ('$first_name', '$last_name', '$mail', '$telephone_number', '$gender', '$controle2', '$password')";
+				$query = "INSERT INTO users(first_name, last_name, email_address, telephone_number, gender, addresses_id, password_hash,created_at,updated_at) ";
+				$query .= " VALUES ('$first_name', '$last_name', '$mail', '$telephone_number', '$gender', '$controle2', '$password',now(),now())";
 
 					if ($mysqli->query($query)) {
 						$sql = "SELECT MAX(id) AS `id` FROM users";

@@ -20,7 +20,7 @@ if($_SESSION['is_admin']){
 			FROM `addresses` a
 				JOIN `users` u ON u.`addresses_id` = a.`id`
 		    JOIN `orders` o ON o.`addresses_id` = a.`id`
-			WHERE o.`id` = $orderid AND u.`id` = $userid;"
+			WHERE o.`id` = $orderid"
 		);
 		$result = mysqli_query($db, $sql);
 		while($row = mysqli_fetch_assoc($result)){
@@ -107,10 +107,10 @@ if($_SESSION['is_admin']){
 			");
 			mysqli_query($db, $sql);
 		}
-		header("location: account_order.php?userid={$_GET['userid']}&orderid={$_GET['orderid']}");
+		header("location: account_order.php?orderid={$_GET['orderid']}&message_code=12");
 	}
 	elseif(isset($_POST['cancel'])){
-		header("location: account_order.php?userid={$_GET['userid']}&orderid={$_GET['orderid']}");
+		header("location: account_order.php?orderid={$_GET['orderid']}");
 	}
 	$sql = (
 		"SELECT `users_id`, o.`id`, `date`, s.`description` AS `statusdescription`, `first_name`, `last_name`, p.`name` AS `productname`, `email_address`,
@@ -151,7 +151,7 @@ if($_SESSION['is_admin']){
 				</table>
 				<br />
 				<h3>Order Information</h3>
-				<table class='table' style='display:inline; width:15rem'>
+				<table class='table' style='display:inline; width:10rem'>
 					<thread>
 					<tr>
 						<td><b>Order Number</b></td>
@@ -175,15 +175,21 @@ if($_SESSION['is_admin']){
 						<td><b>Status</b></td>
 						<td><select class='selectpicker' name='status_id'>
 							<option selected disabled>".$row['statusdescription']."</option>
-							<option value='1'>Processing</option>
-							<option value='2'>Paid</option>
-							<option value='3'>Sent</option>
-							<option value='4'>Declined</option>
+							");
+							$sql2 = (
+							"SELECT `id`, `description` FROM `status`");
+								$result2 = mysqli_query($db, $sql2);
+									while($row2 = mysqli_fetch_assoc($result2)){
+										echo ("
+							<option value={$row2['id']}>{$row2['description']}</option>
+							");
+						}
+						echo ("
 						</select></td>
 					</tr>
 					</thread>
 				</table>
-				<table class='table pl-5' style='display:inline; width:15rem'>
+				<table class='table pl-3' style='display:inline; width:10rem'>
 				<thread>
 					<tr>
 						<td><b>Address</b></td><form method='post'>
@@ -209,7 +215,7 @@ if($_SESSION['is_admin']){
 					</tr>
 					</thread>
 				</table>
-				<table class='table pl-5' style='display:inline; width:15rem'>
+				<table class='table pl-3' style='display:inline; width:10rem'>
 				<thread>
 					<tr>
 						<td><b>Payment Method</b></td>
@@ -286,7 +292,7 @@ echo ("
 
 }
 else {
-	echo "This record is locked."
+	echo "This record is locked.";
 }
 ?>
 
